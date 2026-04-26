@@ -119,35 +119,31 @@
       <h2 style="font-size:17px;font-weight:700;margin-bottom:4px;">💬 Family Discussion</h2>
       <p style="font-size:12px;color:var(--muted);">
         Share your thoughts, questions, or concerns about this house.
-        You'll need a free
-        <a href="https://github.com/signup" target="_blank" style="color:var(--blue);">GitHub account</a>
-        to comment — takes 2 minutes.
+        Just enter your name — no account needed.
       </p>
     </div>
 
-    <!--
-      SETUP GISCUS (one-time, ~5 min):
-        1. Go to https://giscus.app
-        2. Enter "gngengwe/kc-house-hunt" — Discussions are already enabled
-        3. Page Mapping → URL
-        4. Copy the data-repo-id and data-category-id values
-        5. Replace REPLACE_WITH_REPO_ID and REPLACE_WITH_CATEGORY_ID below
-        6. Push to GitHub — comments appear instantly
-    -->
-    <script src="https://giscus.app/client.js"
-      data-repo="gngengwe/kc-house-hunt"
-      data-repo-id="R_kgDOSNSGcQ"
-      data-category="General"
-      data-category-id="DIC_kwDOSNSGcc4C7v9v"
-      data-mapping="url"
-      data-strict="0"
-      data-reactions-enabled="1"
-      data-emit-metadata="0"
-      data-input-position="bottom"
-      data-theme="dark_dimmed"
-      data-lang="en"
-      crossorigin="anonymous"
-      async>
+    <!-- Cusdis — no account needed to comment, just a name -->
+    <div id="cusdis_thread"
+      data-host="https://cusdis.com"
+      data-app-id="404f5725-676d-4708-bebd-3c02975cb7e7"
+      data-page-id=""
+      data-page-url=""
+      data-page-title=""
+      style="margin-top:8px;"
+    ></div>
+    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+    <script>
+      // Populate Cusdis with this house's data once the house loads
+      window.setCusdisPage = function(id, url, title) {
+        var el = document.getElementById('cusdis_thread');
+        if (!el) return;
+        el.setAttribute('data-page-id', id);
+        el.setAttribute('data-page-url', url);
+        el.setAttribute('data-page-title', title);
+        // Re-init Cusdis if it already loaded
+        if (window.CUSDIS) window.CUSDIS.initial();
+      };
     </script>
   </section>
 
@@ -215,6 +211,9 @@ async function loadHouse() {
   document.title = `${h.nickname} — KC House Hunt`;
   render(h);
   buildNav(h, houses);
+  // Set Cusdis page context — unique per house
+  const pageUrl = window.location.href;
+  if (window.setCusdisPage) window.setCusdisPage(h.id, pageUrl, h.nickname);
 }
 
 function render(h) {
