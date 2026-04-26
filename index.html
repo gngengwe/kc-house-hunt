@@ -141,6 +141,105 @@
 
 <body>
 
+<!-- ─── WELCOME MODAL ────────────────────────────────────── -->
+<div id="welcome-overlay" style="display:none;position:fixed;inset:0;z-index:999;
+  background:rgba(4,8,18,0.85);backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;padding:16px;">
+  <div style="background:#0e1525;border:1px solid #253553;border-radius:18px;
+    max-width:480px;width:100%;padding:28px 24px;position:relative;">
+
+    <!-- Logo -->
+    <div style="text-align:center;margin-bottom:20px;">
+      <div style="font-size:44px;margin-bottom:8px;">🏡</div>
+      <h2 style="font-size:20px;font-weight:800;color:#e2e8f5;margin-bottom:4px;">
+        Welcome to Mom's KC House Hunt
+      </h2>
+      <p style="font-size:13px;color:#7a91b8;line-height:1.5;">
+        5 houses toured in Kansas City — April 23, 2026.<br>
+        Here's how to use this site.
+      </p>
+    </div>
+
+    <!-- Steps -->
+    <div style="display:flex;flex-direction:column;gap:0;">
+
+      <div style="display:flex;gap:14px;align-items:flex-start;padding:14px 0;
+        border-bottom:1px solid #1a2540;">
+        <div style="font-size:26px;flex-shrink:0;width:36px;text-align:center;">📋</div>
+        <div>
+          <div style="font-size:14px;font-weight:700;color:#e2e8f5;margin-bottom:3px;">
+            Browse the houses
+          </div>
+          <div style="font-size:12px;color:#7a91b8;line-height:1.5;">
+            Scroll through all 5 houses on the main page. Each card shows the price,
+            beds/baths, key features, and a real quote from the tour — ranked best to worst.
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:14px;align-items:flex-start;padding:14px 0;
+        border-bottom:1px solid #1a2540;">
+        <div style="font-size:26px;flex-shrink:0;width:36px;text-align:center;">🔍</div>
+        <div>
+          <div style="font-size:14px;font-weight:700;color:#e2e8f5;margin-bottom:3px;">
+            Tap any card for the full picture
+          </div>
+          <div style="font-size:12px;color:#7a91b8;line-height:1.5;">
+            Click a house to see room-by-room notes, actual recorded quotes from the tour,
+            mechanical ages (roof, HVAC, water heater), and the overall assessment.
+            Sections collapse so you only see what you need.
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:14px;align-items:flex-start;padding:14px 0;
+        border-bottom:1px solid #1a2540;">
+        <div style="font-size:26px;flex-shrink:0;width:36px;text-align:center;">💬</div>
+        <div>
+          <div style="font-size:14px;font-weight:700;color:#e2e8f5;margin-bottom:3px;">
+            Leave your thoughts on any house
+          </div>
+          <div style="font-size:12px;color:#7a91b8;line-height:1.5;">
+            Each house has its own comment section at the bottom of its page.
+            Sign in with a free <strong style="color:#60a5fa;">GitHub account</strong>
+            to comment, react with emoji, or reply to someone else.
+            Every house gets its own thread.
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:14px;align-items:flex-start;padding:14px 0;">
+        <div style="font-size:26px;flex-shrink:0;width:36px;text-align:center;">🏠</div>
+        <div>
+          <div style="font-size:14px;font-weight:700;color:#e2e8f5;margin-bottom:3px;">
+            Found a new house we should look at?
+          </div>
+          <div style="font-size:12px;color:#7a91b8;line-height:1.5;">
+            <strong style="color:#e2e8f5;">Don't use any form</strong> — just send the
+            address or Zillow link directly to
+            <strong style="color:#fbbf24;">gngengwe@gmail.com</strong> or WhatsApp,
+            and it'll be added to the site within 24 hours.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <button onclick="closeWelcome()"
+      style="margin-top:20px;width:100%;background:linear-gradient(135deg,#1d4ed8,#60a5fa);
+        color:#fff;font-family:inherit;font-size:14px;font-weight:700;padding:13px;
+        border:none;border-radius:10px;cursor:pointer;">
+      Got it — show me the houses →
+    </button>
+
+    <p style="text-align:center;font-size:11px;color:#3d5278;margin-top:10px;">
+      This message only appears once.
+    </p>
+  </div>
+</div>
+<!-- ─── END WELCOME MODAL ─────────────────────────────────── -->
+
 <!-- ─── HEADER ──────────────────────────────────────────── -->
 <header class="site-header sticky top-0 z-50">
   <div style="max-width:900px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;">
@@ -470,6 +569,23 @@ function buildCard(h) {
 }
 
 init();
+
+/* ── Welcome modal ─────────────────────────────────────── */
+function closeWelcome() {
+  document.getElementById('welcome-overlay').style.display = 'none';
+  localStorage.setItem('kc-hunt-welcomed', '1');
+}
+
+(function() {
+  if (!localStorage.getItem('kc-hunt-welcomed')) {
+    const el = document.getElementById('welcome-overlay');
+    el.style.display = 'flex';
+    // close if user clicks the dark backdrop itself
+    el.addEventListener('click', function(e) {
+      if (e.target === el) closeWelcome();
+    });
+  }
+})();
 </script>
 </body>
 </html>
