@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>House Details — KC House Hunt</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #f1f5f9; }
+    .badge-top   { background: linear-gradient(135deg, #7c3aed, #a855f7); }
+    .badge-solid { background: linear-gradient(135deg, #1d4ed8, #3b82f6); }
+    .badge-watch { background: linear-gradient(135deg, #b45309, #f59e0b); }
+    .badge-pass  { background: linear-gradient(135deg, #4b5563, #9ca3af); }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ─────────────────────────────────────────────────── -->
+<header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+  <div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-1.5 text-sm text-slate-600 hover:text-slate-900 font-medium">
+      ← All Houses
+    </a>
+    <a href="add-house.html"
+       class="bg-blue-600 text-white text-sm font-semibold px-3 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+      + Add a House
+    </a>
+  </div>
+</header>
+
+<main class="max-w-3xl mx-auto px-4 py-8">
+
+  <!-- ── HOUSE CONTENT (rendered by JS) ────────────────────────── -->
+  <div id="house-content">
+    <div class="text-center text-slate-400 py-16 text-sm">Loading…</div>
+  </div>
+
+  <!-- ── COMMENTS SECTION ───────────────────────────────────────── -->
+  <section class="mt-12" id="comments-section">
+    <h2 class="text-xl font-bold text-slate-900 mb-1">💬 Family Discussion</h2>
+    <p class="text-sm text-slate-500 mb-6">
+      Share your thoughts, questions, or concerns about this house.
+      You'll need a free
+      <a href="https://github.com/signup" target="_blank" class="text-blue-600 hover:underline font-medium">GitHub account</a>
+      to comment (takes 2 minutes to set up).
+    </p>
+
+    <!-- ┌────────────────────────────────────────────────────────────────────┐
+         │  GISCUS SETUP (one-time, ~5 min)                                  │
+         │                                                                    │
+         │  1. Create the GitHub repo if you haven't already                 │
+         │  2. Enable Discussions: repo → Settings → Features → Discussions  │
+         │  3. Install Giscus app: https://github.com/apps/giscus            │
+         │     → Configure → select your repo                                │
+         │  4. Go to https://giscus.app, enter "gngengwe/kc-house-hunt"      │
+         │  5. Page Mapping: select "URL"                                     │
+         │  6. Copy the generated <script> tag                               │
+         │  7. Replace the placeholder script below with the copied tag      │
+         └────────────────────────────────────────────────────────────────────┘ -->
+    <div id="giscus-container">
+      <script src="https://giscus.app/client.js"
+        data-repo="gngengwe/kc-house-hunt"
+        data-repo-id="REPLACE_WITH_REPO_ID"
+        data-category="General"
+        data-category-id="REPLACE_WITH_CATEGORY_ID"
+        data-mapping="url"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </div>
+
+    <!-- Fallback until Giscus is configured -->
+    <noscript>
+      <div class="bg-slate-100 rounded-xl p-4 text-sm text-slate-600">
+        Comments require JavaScript to be enabled.
+      </div>
+    </noscript>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────── -->
+<footer class="border-t border-slate-200 bg-white mt-12">
+  <div class="max-w-3xl mx-auto px-4 py-5 flex items-center justify-between">
+    <a href="index.html" class="text-sm text-slate-400 hover:text-slate-600">← All Houses</a>
+    <a href="add-house.html" class="text-sm font-semibold text-blue-600 hover:text-blue-700">+ Add a house →</a>
+  </div>
+</footer>
+
+<!-- ── JS ─────────────────────────────────────────────────────── -->
+<script>
+const STATUS = {
+  'top-pick': { label: '🥇 Top Pick', badge: 'badge-top',   ring: 'border-purple-400' },
+  'solid':    { label: '🥈 Solid',    badge: 'badge-solid', ring: 'border-blue-400'   },
+  'watch':    { label: '👀 Watch',    badge: 'badge-watch', ring: 'border-amber-400'  },
+  'pass':     { label: '⏭ Pass',     badge: 'badge-pass',  ring: 'border-slate-300'  },
+};
+
+function mechIcon(age) {
+  if (!age) return { icon: '❓', color: 'text-slate-400', label: 'Unknown' };
+  if (age <= 3)  return { icon: '✅', color: 'text-green-600', label: age + ' yrs — excellent' };
+  if (age <= 7)  return { icon: '👍', color: 'text-blue-600',  label: age + ' yrs — good' };
+  if (age <= 12) return { icon: '⚠️', color: 'text-amber-600', label: age + ' yrs — aging' };
+  return              { icon: '🔴', color: 'text-red-600',   label: age + ' yrs — replace soon' };
+}
+
+async function loadHouse() {
+  const id = new URLSearchParams(window.location.search).get('id');
+  if (!id) { window.location.href = 'index.html'; return; }
+
+  let houses;
+  try {
+    const res = await fetch('./data/houses.json');
+    houses = await res.json();
+  } catch(e) {
+    document.getElementById('house-content').innerHTML =
+      `<div class="text-center text-red-400 py-12 text-sm">Could not load house data.<br><a href="index.html" class="text-blue-600 underline">← Back</a></div>`;
+    return;
+  }
+
+  const h = houses.find(x => x.id === id);
+  if (!h) {
+    document.getElementById('house-content').innerHTML =
+      `<div class="text-center text-slate-400 py-12 text-sm">House not found.<br><a href="index.html" class="text-blue-600 underline">← Back to all houses</a></div>`;
+    return;
+  }
+
+  document.title = `${h.nickname} — KC House Hunt`;
+  render(h);
+}
+
+function render(h) {
+  const s = STATUS[h.status] || STATUS['pass'];
+  const price = h.price ? '$' + h.price.toLocaleString() : 'Price TBD';
+
+  /* ── Mechanicals ───────────────────────────────────────── */
+  const mechEntries = Object.entries(h.mechanicals || {});
+  const mechHTML = mechEntries.length ? `
+    <div class="bg-white rounded-2xl border border-slate-200 p-5 mb-5 shadow-sm">
+      <h2 class="font-bold text-slate-900 mb-4">🔧 Mechanicals &amp; Condition</h2>
+      <div class="space-y-3">
+        ${mechEntries.map(([name, val]) => {
+          const m = mechIcon(val.age);
+          return `
+            <div class="flex items-start justify-between gap-2 pb-3 border-b border-slate-100 last:border-0 last:pb-0">
+              <span class="text-sm font-medium text-slate-700">${name}</span>
+              <span class="${m.color} text-sm text-right">${m.icon} ${m.label}${val.note ? ' — ' + val.note : ''}</span>
+            </div>`;
+        }).join('')}
+      </div>
+    </div>` : '';
+
+  /* ── Render ─────────────────────────────────────────────── */
+  document.getElementById('house-content').innerHTML = `
+
+    <!-- HERO CARD -->
+    <div class="bg-white rounded-2xl border-2 ${s.ring} overflow-hidden mb-5 shadow-sm">
+      <div class="${s.badge} text-white px-5 py-3 flex items-center justify-between">
+        <span class="font-semibold">${s.label}</span>
+        <span class="font-bold text-xl">${price}</span>
+      </div>
+      <div class="p-5">
+        <h1 class="text-3xl font-extrabold text-slate-900 leading-tight">${h.nickname}</h1>
+        ${h.tagline ? `<p class="text-slate-500 italic text-sm mt-0.5">"${h.tagline}"</p>` : ''}
+        <p class="text-slate-400 text-xs mt-1 mb-4">
+          ${h.address}${h.visitDate ? ` · Visited ${h.visitDate}` : ''}
+          ${h.zillowUrl ? ` · <a href="${h.zillowUrl}" target="_blank" class="text-blue-500 hover:underline">Zillow →</a>` : ''}
+        </p>
+
+        <!-- Stats pills -->
+        <div class="flex flex-wrap gap-2 mb-4">
+          ${h.beds  != null ? `<div class="bg-slate-100 rounded-xl px-3 py-2 text-center min-w-[52px]"><div class="text-base font-bold text-slate-900">${h.beds}</div><div class="text-xs text-slate-400">Beds</div></div>` : ''}
+          ${h.baths != null ? `<div class="bg-slate-100 rounded-xl px-3 py-2 text-center min-w-[52px]"><div class="text-base font-bold text-slate-900">${h.baths}</div><div class="text-xs text-slate-400">Baths</div></div>` : ''}
+          ${h.stories ? `<div class="bg-slate-100 rounded-xl px-3 py-2 text-center min-w-[52px]"><div class="text-base font-bold text-slate-900">${h.stories}</div><div class="text-xs text-slate-400">Floors</div></div>` : ''}
+          ${h.yearBuilt ? `<div class="bg-slate-100 rounded-xl px-3 py-2 text-center min-w-[52px]"><div class="text-base font-bold text-slate-900">${h.yearBuilt}</div><div class="text-xs text-slate-400">Built</div></div>` : ''}
+          ${h.sqft ? `<div class="bg-slate-100 rounded-xl px-3 py-2 text-center min-w-[52px]"><div class="text-base font-bold text-slate-900">${h.sqft.toLocaleString()}</div><div class="text-xs text-slate-400">Sq ft</div></div>` : ''}
+          ${h.pool   ? `<div class="bg-blue-50  border border-blue-200  rounded-xl px-3 py-2 text-center"><div class="text-lg">🏊</div><div class="text-xs text-blue-600 font-medium">Pool</div></div>` : ''}
+          ${h.garage ? `<div class="bg-green-50 border border-green-200 rounded-xl px-3 py-2 text-center"><div class="text-lg">🚗</div><div class="text-xs text-green-600 font-medium">Garage</div></div>` : ''}
+        </div>
+
+        <!-- Reaction quote -->
+        ${h.reaction ? `<div class="bg-yellow-50 border border-yellow-200 rounded-xl px-4 py-3 text-sm text-slate-800 italic leading-snug">${h.reaction}</div>` : ''}
+      </div>
+    </div>
+
+    <!-- HIGHLIGHTS & CONCERNS -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      ${h.features && h.features.length ? `
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+          <h2 class="font-bold text-slate-900 mb-3 text-sm uppercase tracking-wide text-green-600">✅ Highlights</h2>
+          <ul class="space-y-2">
+            ${h.features.map(f => `
+              <li class="flex items-start gap-2 text-sm text-slate-700">
+                <span class="text-green-400 flex-shrink-0 mt-0.5">●</span>${f}
+              </li>`).join('')}
+          </ul>
+        </div>` : ''}
+      ${h.concerns && h.concerns.length ? `
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+          <h2 class="font-bold text-slate-900 mb-3 text-sm uppercase tracking-wide text-amber-600">⚠️ Concerns</h2>
+          <ul class="space-y-2">
+            ${h.concerns.map(c => `
+              <li class="flex items-start gap-2 text-sm text-slate-700">
+                <span class="text-amber-400 flex-shrink-0 mt-0.5">●</span>${c}
+              </li>`).join('')}
+          </ul>
+        </div>` : ''}
+    </div>
+
+    <!-- MECHANICALS -->
+    ${mechHTML}
+
+    <!-- VERDICT -->
+    ${h.verdict ? `
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 mb-5 shadow-sm">
+        <h2 class="font-bold text-slate-900 mb-2">📋 Overall Assessment</h2>
+        <p class="text-slate-700 text-sm leading-relaxed">${h.verdict}</p>
+      </div>` : ''}
+
+    <!-- NOTES -->
+    ${h.notes ? `
+      <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5 mb-5">
+        <h2 class="font-bold text-amber-900 mb-2 text-sm uppercase tracking-wide">📝 Notes &amp; Details</h2>
+        <p class="text-sm text-amber-800 leading-relaxed">${h.notes}</p>
+      </div>` : ''}
+
+    <!-- NAV -->
+    <div id="house-nav" class="flex gap-3 mb-8"></div>
+  `;
+
+  buildNav(h);
+}
+
+async function buildNav(current) {
+  try {
+    const res  = await fetch('./data/houses.json');
+    const all  = await res.json();
+    const ORDER = { 'top-pick': 0, 'solid': 1, 'watch': 2, 'pass': 3 };
+    const sorted = [...all].sort((a,b) => (ORDER[a.status]??9) - (ORDER[b.status]??9));
+    const idx  = sorted.findIndex(h => h.id === current.id);
+    const prev = sorted[idx - 1];
+    const next = sorted[idx + 1];
+    const nav  = document.getElementById('house-nav');
+    if (!nav) return;
+    nav.innerHTML = `
+      ${prev ? `<a href="house.html?id=${prev.id}" class="flex-1 bg-white border border-slate-200 rounded-xl p-3 text-sm text-slate-600 hover:bg-slate-50 text-left shadow-sm">← ${prev.nickname}</a>` : '<div></div>'}
+      ${next ? `<a href="house.html?id=${next.id}" class="flex-1 bg-white border border-slate-200 rounded-xl p-3 text-sm text-slate-600 hover:bg-slate-50 text-right shadow-sm">${next.nickname} →</a>` : ''}
+    `;
+  } catch(e) { /* silent */ }
+}
+
+loadHouse();
+</script>
+</body>
+</html>

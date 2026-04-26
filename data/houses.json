@@ -1,0 +1,182 @@
+[
+  {
+    "id": "pool-house",
+    "nickname": "The Pool House",
+    "tagline": "This is the one!",
+    "address": "~2326 [Street TBD — confirm with realtor]",
+    "price": 585000,
+    "status": "top-pick",
+    "visitDate": "2026-04-23",
+    "yearBuilt": null,
+    "stories": 2,
+    "beds": "5+",
+    "baths": "2+",
+    "sqft": null,
+    "garage": null,
+    "pool": true,
+    "zillowUrl": null,
+    "features": [
+      "Swimming pool (shallow/decorative)",
+      "Double staircase — grand entry",
+      "Beautiful kitchen with lots of cabinet space",
+      "3-year-old roof — nearly new",
+      "Multiple bedrooms upstairs"
+    ],
+    "concerns": [
+      "Unfinished basement",
+      "No bedroom on main floor — accessibility concern",
+      "Price is $90K more than the next option",
+      "Pool maintenance cost (~$150–300/month)"
+    ],
+    "reaction": "🔥🔥🔥 \"OH MY GOD. THIS IS THE ONE.\"",
+    "mechanicals": {
+      "Roof": { "age": 3, "note": "Excellent — nearly new ✅" },
+      "HVAC": { "age": null, "note": "Not captured — ask realtor" },
+      "Water Heater": { "age": null, "note": "Not captured — ask realtor" }
+    },
+    "verdict": "The clear emotional frontrunner — the entire group had an overwhelmingly positive reaction unlike any other house visited. Newest roof, pool, beautiful kitchen, and a double staircase. Main drawbacks are the unfinished basement (get a finishing estimate) and no main-floor bedroom (consider accessibility for Grandpa).",
+    "notes": "Address is approximate — verify with realtor. Pool is shallow/decorative. Realtor pulled this listing up during the East 70th Terrace showing. The realtor mentioned another pool house going live April 29th — compare before deciding."
+  },
+  {
+    "id": "east-70th",
+    "nickname": "East 70th Terrace",
+    "tagline": "Solid, familiar, dependable",
+    "address": "East 70th Terrace, Kansas City, MO",
+    "price": 495000,
+    "status": "solid",
+    "visitDate": "2026-04-23",
+    "yearBuilt": 1932,
+    "stories": 2,
+    "beds": 4,
+    "baths": 1.5,
+    "sqft": null,
+    "garage": null,
+    "pool": false,
+    "zillowUrl": null,
+    "features": [
+      "4 bedrooms: 3 downstairs + 1 large upstairs suite",
+      "1.5 baths — shower & toilet on opposite sides (nice layout)",
+      "200-amp electrical panel in basement (upgraded)",
+      "2-year-old water heater",
+      "Similar size to current home — easy to visualize living here",
+      "Upstairs could be converted to a complete 3-bed suite"
+    ],
+    "concerns": [
+      "Roof is 11 years old — budget ~$15–25K for replacement soon",
+      "Original windows from 1932 — likely single-pane, high energy cost",
+      "HVAC upstairs is 7 years old — mid-life",
+      "HVAC in basement is 10 years old — aging",
+      "Steep stairs to upper level — concern for older family members",
+      "Showing was very stuffy — staged clothes in closets, not reflective of actual space"
+    ],
+    "reaction": "😊😊 \"This house is good\" — solid, positive but measured",
+    "mechanicals": {
+      "Roof": { "age": 11, "note": "Aging — replacement likely needed within 3–5 yrs ⚠️" },
+      "HVAC (upstairs)": { "age": 7, "note": "Mid-life — monitor annually" },
+      "HVAC (basement)": { "age": 10, "note": "Aging — plan for replacement ⚠️" },
+      "Water Heater": { "age": 2, "note": "Nearly new ✅" },
+      "Electrical Panel": { "age": null, "note": "200-amp — upgraded ✅" }
+    },
+    "verdict": "The safe, solid choice. Comparable to the current home in size and feel — easy to picture living there. The $90K lower price is real, but aging mechanicals (roof + 2 HVAC units + original windows) could eat into that gap. Good bones, dependable, but not the most exciting option.",
+    "notes": "Year built is approximate based on audio (~1925–1932). The upstairs was made into a complete 3-bedroom suite by the previous owners — this is a major bonus. Room discussed as possible office for one person, bedroom for Olivia. Clothes were staged in closets making it feel stuffy — don't let that color the actual size judgment."
+  },
+  {
+    "id": "drive-by",
+    "nickname": "The Drive-By",
+    "tagline": "\"Oh cute — it's mine!\"",
+    "address": "Near bridge/river — exact address not captured",
+    "price": null,
+    "status": "watch",
+    "visitDate": "2026-04-23",
+    "yearBuilt": null,
+    "stories": null,
+    "beds": null,
+    "baths": null,
+    "sqft": null,
+    "garage": null,
+    "pool": null,
+    "zillowUrl": null,
+    "features": [
+      "Spotted in a nicer neighborhood near a bridge/river",
+      "Strong instinctive positive reaction on first glance",
+      "Not yet evaluated — could be a hidden gem"
+    ],
+    "concerns": [
+      "No details yet — needs a proper showing",
+      "Location near bridge may require Uber/transit depending on family base",
+      "Unknown price, beds, baths, condition"
+    ],
+    "reaction": "😍 \"Oh cute\" — \"it's mine!\" — very instinctive, positive first impression",
+    "mechanicals": {},
+    "verdict": "This was not a scheduled stop — spotted while driving past on the last house of the day. The immediate gut reaction was strong ('it's mine!'). That kind of instinct is worth following up on. Needs a proper showing before any real evaluation.",
+    "notes": "Spotted while driving near a bridge/river area on the way back from the day's showings. Address was not recorded — ask the realtor to identify the listing from the location description."
+  },
+  {
+    "id": "garage-house",
+    "nickname": "The Garage House",
+    "tagline": "\"Super adorable\" — but limited",
+    "address": "~5851 or 5901 [Street TBD]",
+    "price": null,
+    "status": "pass",
+    "visitDate": "2026-04-23",
+    "yearBuilt": null,
+    "stories": 2,
+    "beds": "2 + attic",
+    "baths": 1,
+    "sqft": null,
+    "garage": true,
+    "pool": false,
+    "zillowUrl": null,
+    "features": [
+      "Has a garage",
+      "Attic is already PLUMBED for a full bathroom — expansion opportunity",
+      "Described as 'super adorable' and 'cute'",
+      "Washer/dryer in basement"
+    ],
+    "concerns": [
+      "Only 1 bathroom — dealbreaker for this family",
+      "Very steep stairs — raised as accessibility concern",
+      "Attic access is difficult (steep/narrow) — 'last resort' to sleep up there",
+      "Price described as 'higher' relative to what it offers"
+    ],
+    "reaction": "😊 \"Super adorable\" — cute but not a fit",
+    "mechanicals": {
+      "Roof": { "age": null, "note": "Not captured — ask realtor" },
+      "HVAC": { "age": null, "note": "Not captured — ask realtor" },
+      "Water Heater": { "age": null, "note": "Not captured — ask realtor" }
+    },
+    "verdict": "Cute and has a garage, but the single bathroom is a real constraint for this family. The attic being already plumbed for a full bathroom is the hidden gem — if you could add that bathroom, the value story changes significantly. Worth asking for an estimate on that work before fully dismissing.",
+    "notes": "Two addresses on or near the same street (5851 and 5901). Shoes required to be removed for showing. Realtor mentioned a separate house 'waiting to come active' on the same street worth watching. Realtor also noted that 1 bathroom is 'typical for a two-story' in this area."
+  },
+  {
+    "id": "jefferson-st",
+    "nickname": "Jefferson Street",
+    "tagline": "Big yard, new kitchen — but 1 bath",
+    "address": "7135 Jefferson Street, Kansas City, MO",
+    "price": null,
+    "status": "pass",
+    "visitDate": "2026-04-23",
+    "yearBuilt": null,
+    "stories": null,
+    "beds": 3,
+    "baths": 1,
+    "sqft": null,
+    "garage": null,
+    "pool": false,
+    "zillowUrl": null,
+    "features": [
+      "Huge yard / park — standout feature",
+      "Recently redone kitchen",
+      "Good exterior appearance"
+    ],
+    "concerns": [
+      "Only 1 bathroom — immediate dealbreaker",
+      "Small downstairs bedroom",
+      "Recording was missed — assessment from memory only"
+    ],
+    "reaction": "😐 \"Nah\" — clear dealbreaker on bathrooms",
+    "mechanicals": {},
+    "verdict": "The huge yard and newly redone kitchen are genuinely appealing features. But 1 bathroom was an immediate dealbreaker for this family. Not worth revisiting unless the price drops significantly or the family's bathroom requirement changes.",
+    "notes": "Recording was mostly missed — the speaker thought they were recording but wasn't. The description is from memory after the fact, so details may be incomplete. The downstairs bedroom being small is notable for accessibility planning."
+  }
+]
