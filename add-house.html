@@ -4,129 +4,170 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Submit a House — KC House Hunt</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>body { font-family: 'Inter', sans-serif; background: #f1f5f9; }</style>
+  <style>
+    :root {
+      --bg:     #080d17;
+      --bg-1:   #0e1525;
+      --bg-2:   #141e30;
+      --bg-3:   #1a2540;
+      --border: #1e2e47;
+      --b2:     #253553;
+      --text:   #e2e8f5;
+      --muted:  #7a91b8;
+      --dim:    #3d5278;
+      --blue:   #60a5fa;
+      --green:  #34d399;
+      --amber:  #fbbf24;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); }
+
+    header { background:rgba(8,13,23,0.92); backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border); position:sticky; top:0; z-index:50; }
+
+    label-text { display:block; font-size:12px; font-weight:600; color:var(--muted);
+      text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px; }
+
+    .field-label { display:block; font-size:12px; font-weight:600; color:var(--muted);
+      text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px; }
+
+    input[type=text], input[type=url], textarea, select {
+      width:100%; background:var(--bg-2); border:1px solid var(--border); color:var(--text);
+      font-family:inherit; font-size:13px; padding:10px 12px; border-radius:9px;
+      outline:none; transition:border-color 0.15s; -webkit-appearance:none; }
+    input[type=text]:focus, input[type=url]:focus, textarea:focus, select:focus {
+      border-color:var(--blue); }
+    input::placeholder, textarea::placeholder { color:var(--dim); }
+    select option { background:var(--bg-2); }
+    textarea { resize:vertical; min-height:80px; }
+
+    .check-label { display:flex; align-items:center; gap:8px; font-size:13px;
+      color:var(--muted); cursor:pointer; padding:6px 0; }
+    .check-label input { width:15px; height:15px; border-radius:4px; accent-color:var(--blue);
+      flex-shrink:0; cursor:pointer; }
+
+    .radio-group { display:flex; flex-wrap:wrap; gap:8px; }
+    .radio-btn { position:relative; }
+    .radio-btn input { position:absolute; opacity:0; width:0; height:0; }
+    .radio-btn span { display:block; padding:7px 14px; border:1px solid var(--border);
+      border-radius:8px; font-size:12px; color:var(--muted); cursor:pointer;
+      transition:all 0.15s; }
+    .radio-btn input:checked + span { border-color:var(--blue); color:var(--blue);
+      background:rgba(96,165,250,0.1); }
+    .radio-btn span:hover { border-color:var(--b2); color:var(--text); }
+
+    .submit-btn { width:100%; background:var(--blue); color:#fff; font-family:inherit;
+      font-size:14px; font-weight:700; padding:14px; border:none; border-radius:10px;
+      cursor:pointer; transition:opacity 0.15s; }
+    .submit-btn:hover { opacity:0.9; }
+    .submit-btn:active { opacity:0.8; }
+
+    .section { margin-bottom:20px; }
+    .form-card { background:var(--bg-1); border:1px solid var(--border);
+      border-radius:14px; padding:24px; }
+    .divider { border:none; border-top:1px solid var(--border); margin:20px 0; }
+
+    ::-webkit-scrollbar { width:6px; }
+    ::-webkit-scrollbar-track { background:var(--bg-1); }
+    ::-webkit-scrollbar-thumb { background:var(--b2); border-radius:3px; }
+  </style>
 </head>
 <body>
 
-<!-- ── HEADER ─────────────────────────────────────────────────── -->
-<header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
-  <div class="max-w-2xl mx-auto px-4 py-3">
-    <a href="index.html" class="text-sm text-slate-600 hover:text-slate-900 font-medium">← Back to all houses</a>
+<header>
+  <div style="max-width:640px;margin:0 auto;padding:12px 16px;">
+    <a href="index.html" style="font-size:13px;font-weight:600;color:var(--muted);text-decoration:none;">
+      ← Back to all houses
+    </a>
   </div>
 </header>
 
-<main class="max-w-2xl mx-auto px-4 py-8">
+<main style="max-width:640px;margin:0 auto;padding:28px 16px 48px;">
 
-  <!-- TITLE -->
-  <div class="mb-6">
-    <h1 class="text-3xl font-extrabold text-slate-900">🏡 Submit a House</h1>
-    <p class="text-slate-500 text-sm mt-1">Found something worth considering? Fill in what you know — every detail helps.</p>
+  <div style="margin-bottom:24px;">
+    <h1 style="font-size:26px;font-weight:800;margin-bottom:6px;">🏡 Submit a House</h1>
+    <p style="font-size:13px;color:var(--muted);">Found something worth considering? Fill in what you know — every detail helps the family decide.</p>
   </div>
 
-  <!-- INFO BOX -->
-  <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6 text-sm text-blue-800">
-    <strong>How this works:</strong> Your submission gets emailed to the site owner, who will add it to the list. All fields marked * are required; the rest are optional but helpful.
+  <div style="background:rgba(96,165,250,0.08);border:1px solid rgba(96,165,250,0.2);
+    border-radius:10px;padding:12px 16px;margin-bottom:24px;font-size:12px;color:#4a8bc8;">
+    <strong style="color:var(--blue);">How this works:</strong> Your submission gets emailed to the site owner,
+    who will add it to the list within 24 hours.
   </div>
 
-  <!-- ── FORM ───────────────────────────────────────────────────── -->
   <!--
-    SETUP: Replace "FORMSPREE_ID" in the action URL with your Formspree endpoint.
-    Steps:
+    SETUP: Replace "FORMSPREE_ID" with your Formspree form ID.
       1. Go to https://formspree.io → Sign Up (free)
-      2. Create a new form → set the notification email to yours
-      3. Copy the form ID (looks like "xabc1234")
-      4. Replace FORMSPREE_ID below with that ID
+      2. Create form → set notification email to gngengwe@gmail.com
+      3. Copy form ID (e.g. "xabc1234")
+      4. Replace FORMSPREE_ID below, push to GitHub
   -->
-  <form
-    action="https://formspree.io/f/FORMSPREE_ID"
-    method="POST"
-    id="house-form"
-    class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-5"
-  >
-    <!-- Hidden field so email subject is clear -->
+  <form action="https://formspree.io/f/FORMSPREE_ID" method="POST" class="form-card">
     <input type="hidden" name="_subject" value="New House Submission — KC House Hunt">
     <input type="hidden" name="_next" value="./thanks.html">
 
-    <!-- WHO ARE YOU -->
-    <div>
-      <label class="block text-sm font-semibold text-slate-700 mb-1">Your name *</label>
-      <input type="text" name="submitter_name" required
-             placeholder="e.g. Marcus, Olivia, Mom…"
-             class="w-full border border-slate-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+    <!-- Who -->
+    <div class="section">
+      <label class="field-label">Your name *</label>
+      <input type="text" name="submitter_name" required placeholder="e.g. Marcus, Olivia, Mom…">
     </div>
 
-    <!-- ADDRESS -->
-    <div>
-      <label class="block text-sm font-semibold text-slate-700 mb-1">Address or Zillow link *</label>
+    <!-- Address -->
+    <div class="section">
+      <label class="field-label">Address or Zillow link *</label>
       <input type="text" name="address" required
-             placeholder="e.g. 4821 Oak St, Kansas City, MO  — or paste a Zillow URL"
-             class="w-full border border-slate-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+        placeholder="4821 Oak St, Kansas City, MO  — or paste a Zillow / Realtor URL">
     </div>
 
-    <!-- PRICE + BEDS/BATHS -->
-    <div class="grid grid-cols-2 gap-4">
+    <!-- Price + Beds/Baths -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;" class="section">
       <div>
-        <label class="block text-sm font-semibold text-slate-700 mb-1">Asking price</label>
-        <input type="text" name="price"
-               placeholder="e.g. $499,000"
-               class="w-full border border-slate-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+        <label class="field-label">Asking price</label>
+        <input type="text" name="price" placeholder="e.g. $499,000">
       </div>
       <div>
-        <label class="block text-sm font-semibold text-slate-700 mb-1">Beds / Baths</label>
-        <input type="text" name="beds_baths"
-               placeholder="e.g. 4 bed / 2 bath"
-               class="w-full border border-slate-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+        <label class="field-label">Beds / Baths</label>
+        <input type="text" name="beds_baths" placeholder="4 bed / 2 bath">
       </div>
     </div>
 
-    <!-- QUICK FEATURES (checkboxes) -->
-    <div>
-      <label class="block text-sm font-semibold text-slate-700 mb-2">Quick features (check all that apply)</label>
-      <div class="grid grid-cols-2 gap-2">
-        <label class="flex items-center gap-2 text-sm text-slate-700 cursor-pointer">
-          <input type="checkbox" name="feature_pool" value="Pool" class="rounded text-blue-600"> 🏊 Pool
-        </label>
-        <label class="flex items-center gap-2 text-sm text-slate-700 cursor-pointer">
-          <input type="checkbox" name="feature_garage" value="Garage" class="rounded text-blue-600"> 🚗 Garage
-        </label>
-        <label class="flex items-center gap-2 text-sm text-slate-700 cursor-pointer">
-          <input type="checkbox" name="feature_basement" value="Basement" class="rounded text-blue-600"> 🏚 Basement
-        </label>
-        <label class="flex items-center gap-2 text-sm text-slate-700 cursor-pointer">
-          <input type="checkbox" name="feature_main_floor_bed" value="Main-floor bedroom" class="rounded text-blue-600"> 🛏 Main-floor bedroom
-        </label>
-        <label class="flex items-center gap-2 text-sm text-slate-700 cursor-pointer">
-          <input type="checkbox" name="feature_new_kitchen" value="Updated kitchen" class="rounded text-blue-600"> 🍳 Updated kitchen
-        </label>
-        <label class="flex items-center gap-2 text-sm text-slate-700 cursor-pointer">
-          <input type="checkbox" name="feature_new_roof" value="New roof (&lt;5 yrs)" class="rounded text-blue-600"> 🏠 New roof (&lt;5 yrs)
-        </label>
+    <hr class="divider">
+
+    <!-- Features -->
+    <div class="section">
+      <label class="field-label">Quick features (check all that apply)</label>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+        <label class="check-label"><input type="checkbox" name="f_pool" value="Pool"> 🏊 Pool</label>
+        <label class="check-label"><input type="checkbox" name="f_garage" value="Garage"> 🚗 Garage</label>
+        <label class="check-label"><input type="checkbox" name="f_basement" value="Basement"> 🏚 Basement</label>
+        <label class="check-label"><input type="checkbox" name="f_mainbed" value="Main-floor bedroom"> 🛏 Main-floor bed</label>
+        <label class="check-label"><input type="checkbox" name="f_kitchen" value="Updated kitchen"> 🍳 Updated kitchen</label>
+        <label class="check-label"><input type="checkbox" name="f_roof" value="New roof (<5 yrs)"> 🏠 New roof (&lt;5 yrs)</label>
       </div>
     </div>
 
-    <!-- WHY EXCITED -->
-    <div>
-      <label class="block text-sm font-semibold text-slate-700 mb-1">Why are you excited about it? *</label>
-      <textarea name="highlights" required rows="3"
-                placeholder="What stood out? Pool, huge yard, great price, nice layout, good neighborhood…"
-                class="w-full border border-slate-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"></textarea>
+    <!-- Why excited -->
+    <div class="section">
+      <label class="field-label">Why are you excited about it? *</label>
+      <textarea name="highlights" required
+        placeholder="Pool, huge yard, great price, nice layout, good neighborhood — what stood out?"></textarea>
     </div>
 
-    <!-- CONCERNS -->
-    <div>
-      <label class="block text-sm font-semibold text-slate-700 mb-1">Any concerns?</label>
+    <!-- Concerns -->
+    <div class="section">
+      <label class="field-label">Any concerns?</label>
       <textarea name="concerns" rows="2"
-                placeholder="Busy street, small yard, only 1 bath, older roof, price, etc."
-                class="w-full border border-slate-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"></textarea>
+        placeholder="Busy street, small yard, only 1 bath, older roof, price, location…"></textarea>
     </div>
 
-    <!-- HOW FOUND -->
-    <div>
-      <label class="block text-sm font-semibold text-slate-700 mb-1">How did you find it?</label>
-      <select name="source" class="w-full border border-slate-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+    <hr class="divider">
+
+    <!-- Source -->
+    <div class="section">
+      <label class="field-label">How did you find it?</label>
+      <select name="source">
         <option value="">— Select —</option>
         <option value="Zillow">Zillow</option>
         <option value="Realtor.com">Realtor.com</option>
@@ -137,54 +178,40 @@
       </select>
     </div>
 
-    <!-- YOUR REACTION -->
-    <div>
-      <label class="block text-sm font-semibold text-slate-700 mb-2">Your gut reaction</label>
-      <div class="flex flex-wrap gap-2">
-        <label class="cursor-pointer">
-          <input type="radio" name="reaction" value="🔥 This is the one!" class="sr-only peer">
-          <span class="peer-checked:ring-2 peer-checked:ring-purple-500 peer-checked:bg-purple-50 border border-slate-200 rounded-lg px-3 py-2 text-sm block hover:bg-slate-50 transition-colors">🔥 This is the one!</span>
-        </label>
-        <label class="cursor-pointer">
-          <input type="radio" name="reaction" value="😊 Really like it" class="sr-only peer">
-          <span class="peer-checked:ring-2 peer-checked:ring-blue-500 peer-checked:bg-blue-50 border border-slate-200 rounded-lg px-3 py-2 text-sm block hover:bg-slate-50 transition-colors">😊 Really like it</span>
-        </label>
-        <label class="cursor-pointer">
-          <input type="radio" name="reaction" value="🤔 Worth a look" class="sr-only peer">
-          <span class="peer-checked:ring-2 peer-checked:ring-amber-500 peer-checked:bg-amber-50 border border-slate-200 rounded-lg px-3 py-2 text-sm block hover:bg-slate-50 transition-colors">🤔 Worth a look</span>
-        </label>
-        <label class="cursor-pointer">
-          <input type="radio" name="reaction" value="😐 Maybe not" class="sr-only peer">
-          <span class="peer-checked:ring-2 peer-checked:ring-slate-400 peer-checked:bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm block hover:bg-slate-50 transition-colors">😐 Maybe not</span>
-        </label>
+    <!-- Reaction -->
+    <div class="section">
+      <label class="field-label">Your gut reaction</label>
+      <div class="radio-group">
+        <label class="radio-btn"><input type="radio" name="reaction" value="🔥 This is the one!">
+          <span>🔥 This is the one!</span></label>
+        <label class="radio-btn"><input type="radio" name="reaction" value="😊 Really like it">
+          <span>😊 Really like it</span></label>
+        <label class="radio-btn"><input type="radio" name="reaction" value="🤔 Worth a look">
+          <span>🤔 Worth a look</span></label>
+        <label class="radio-btn"><input type="radio" name="reaction" value="😐 Maybe not">
+          <span>😐 Maybe not</span></label>
       </div>
     </div>
 
-    <!-- EXTRA NOTES -->
-    <div>
-      <label class="block text-sm font-semibold text-slate-700 mb-1">Anything else?</label>
+    <!-- Extra notes -->
+    <div class="section">
+      <label class="field-label">Anything else?</label>
       <textarea name="extra_notes" rows="2"
-                placeholder="Roof age, school district, neighborhood feel, who would get which room…"
-                class="w-full border border-slate-300 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"></textarea>
+        placeholder="Roof age, school district, neighborhood feel, who gets which room…"></textarea>
     </div>
 
-    <!-- SUBMIT -->
-    <button type="submit"
-            class="w-full bg-blue-600 text-white font-bold py-3.5 rounded-xl hover:bg-blue-700 active:bg-blue-800 transition-colors text-sm mt-2">
-      Submit House →
-    </button>
+    <button type="submit" class="submit-btn">Submit House →</button>
 
-    <p class="text-xs text-slate-400 text-center">
-      Your submission goes to the site owner, who will add it to the list within 24 hrs.
+    <p style="font-size:11px;color:var(--dim);text-align:center;margin-top:12px;">
+      Your submission goes to the site owner who will add it to the list.
     </p>
   </form>
 
 </main>
 
-<!-- ── FOOTER ─────────────────────────────────────────────────── -->
-<footer class="border-t border-slate-200 bg-white mt-8">
-  <div class="max-w-2xl mx-auto px-4 py-5">
-    <a href="index.html" class="text-sm text-slate-400 hover:text-slate-600">← Back to all houses</a>
+<footer style="background:var(--bg-1);border-top:1px solid var(--border);">
+  <div style="max-width:640px;margin:0 auto;padding:14px 16px;">
+    <a href="index.html" style="font-size:12px;color:var(--dim);text-decoration:none;">← Back to all houses</a>
   </div>
 </footer>
 

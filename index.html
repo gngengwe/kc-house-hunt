@@ -8,309 +8,465 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; background: #f1f5f9; }
-    .card-hover { transition: transform 0.15s ease, box-shadow 0.15s ease; }
-    .card-hover:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.10); }
-    .badge-top    { background: linear-gradient(135deg, #7c3aed, #a855f7); }
-    .badge-solid  { background: linear-gradient(135deg, #1d4ed8, #3b82f6); }
-    .badge-watch  { background: linear-gradient(135deg, #b45309, #f59e0b); }
-    .badge-pass   { background: linear-gradient(135deg, #4b5563, #9ca3af); }
-    .border-top   { border-color: #a855f7; }
-    .border-solid { border-color: #3b82f6; }
-    .border-watch { border-color: #f59e0b; }
-    .border-pass  { border-color: #d1d5db; }
+    :root {
+      --bg:      #080d17;
+      --bg-1:    #0e1525;
+      --bg-2:    #141e30;
+      --bg-3:    #1a2540;
+      --border:  #1e2e47;
+      --border2: #253553;
+      --text:    #e2e8f5;
+      --muted:   #7a91b8;
+      --dim:     #3d5278;
+      --purple:  #c084fc;
+      --purple-glow: rgba(192,132,252,0.12);
+      --blue:    #60a5fa;
+      --blue-glow: rgba(96,165,250,0.12);
+      --amber:   #fbbf24;
+      --amber-glow: rgba(251,191,36,0.12);
+      --gray:    #64748b;
+      --gray-glow: rgba(100,116,139,0.10);
+      --green:   #34d399;
+      --red:     #f87171;
+    }
+    * { box-sizing: border-box; }
+    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width:6px; height:6px; }
+    ::-webkit-scrollbar-track { background:var(--bg-1); }
+    ::-webkit-scrollbar-thumb { background:var(--border2); border-radius:3px; }
+
+    /* ── Header ── */
+    .site-header { background:rgba(8,13,23,0.9); backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border); }
+
+    /* ── Alert ── */
+    .alert { background:rgba(251,191,36,0.08); border:1px solid rgba(251,191,36,0.25); }
+
+    /* ── House card ── */
+    .house-card { background:var(--bg-1); border:1px solid var(--border);
+      border-radius:14px; overflow:hidden; transition:border-color 0.2s, box-shadow 0.2s; }
+    .house-card:hover { border-color:var(--border2); box-shadow:0 0 24px rgba(0,0,0,0.5); }
+    .house-card.status-top-pick  { border-color:rgba(192,132,252,0.4); }
+    .house-card.status-solid     { border-color:rgba(96,165,250,0.3); }
+    .house-card.status-watch     { border-color:rgba(251,191,36,0.3); }
+    .house-card.status-pass      { border-color:var(--border); }
+
+    /* status bar at top of card */
+    .status-bar { height:3px; }
+    .bar-top   { background:linear-gradient(90deg,#7c3aed,#c084fc); }
+    .bar-solid { background:linear-gradient(90deg,#1d4ed8,#60a5fa); }
+    .bar-watch { background:linear-gradient(90deg,#b45309,#fbbf24); }
+    .bar-pass  { background:var(--bg-3); }
+
+    /* badge pill */
+    .badge-top   { background:rgba(192,132,252,0.15); color:var(--purple); border:1px solid rgba(192,132,252,0.3); }
+    .badge-solid { background:rgba(96,165,250,0.15);  color:var(--blue);   border:1px solid rgba(96,165,250,0.3); }
+    .badge-watch { background:rgba(251,191,36,0.15);  color:var(--amber);  border:1px solid rgba(251,191,36,0.3); }
+    .badge-pass  { background:rgba(100,116,139,0.12); color:var(--gray);   border:1px solid rgba(100,116,139,0.25); }
+
+    /* stat pill */
+    .stat { background:var(--bg-2); border:1px solid var(--border); color:var(--muted);
+      font-size:12px; padding:3px 9px; border-radius:99px; display:inline-flex;
+      align-items:center; gap:4px; white-space:nowrap; }
+    .stat.good { color:var(--green); border-color:rgba(52,211,153,0.25); background:rgba(52,211,153,0.07); }
+    .stat.warn { color:var(--amber); border-color:rgba(251,191,36,0.25); background:rgba(251,191,36,0.07); }
+    .stat.bad  { color:var(--red);   border-color:rgba(248,113,113,0.25); background:rgba(248,113,113,0.07); }
+
+    /* divider between card halves */
+    .card-divider { width:1px; background:var(--border); flex-shrink:0; }
+
+    /* feature list */
+    .feature-item { display:flex; gap:8px; font-size:13px; color:var(--muted);
+      padding:3px 0; align-items:flex-start; }
+    .feature-item .dot { color:var(--green); flex-shrink:0; margin-top:1px; }
+
+    /* reaction quote inside card */
+    .reaction-chip { background:var(--bg-2); border-left:3px solid; padding:8px 12px;
+      border-radius:0 8px 8px 0; font-size:12px; font-style:italic; color:var(--text); margin-top:auto; }
+    .rc-top   { border-color:var(--purple); }
+    .rc-solid { border-color:var(--blue); }
+    .rc-watch { border-color:var(--amber); }
+    .rc-pass  { border-color:var(--gray); }
+
+    /* view link */
+    .view-link { font-size:13px; font-weight:600; text-decoration:none; display:inline-flex;
+      align-items:center; gap:4px; transition:gap 0.15s; }
+    .view-link:hover { gap:8px; }
+    .vl-top   { color:var(--purple); }
+    .vl-solid { color:var(--blue); }
+    .vl-watch { color:var(--amber); }
+    .vl-pass  { color:var(--gray); }
+
+    /* ── Collapsible panel ── */
+    .panel { background:var(--bg-1); border:1px solid var(--border);
+      border-radius:12px; overflow:hidden; }
+    .panel-btn { width:100%; display:flex; align-items:center; justify-content:space-between;
+      padding:14px 18px; cursor:pointer; background:none; border:none; color:var(--text);
+      font-size:15px; font-weight:600; font-family:inherit; text-align:left;
+      transition:background 0.15s; }
+    .panel-btn:hover { background:var(--bg-2); }
+    .panel-btn .chevron { flex-shrink:0; transition:transform 0.25s ease;
+      color:var(--dim); }
+    .panel-btn.open .chevron { transform:rotate(180deg); }
+    .panel-body { display:grid; grid-template-rows:0fr; transition:grid-template-rows 0.3s ease; }
+    .panel-body.open { grid-template-rows:1fr; }
+    .panel-inner { overflow:hidden; }
+
+    /* ── Comparison table ── */
+    .cmp-table th { font-size:11px; font-weight:600; text-transform:uppercase;
+      letter-spacing:.05em; color:var(--muted); padding:10px 12px; border-bottom:1px solid var(--border); }
+    .cmp-table td { padding:9px 12px; border-bottom:1px solid var(--bg-2); font-size:13px; }
+    .cmp-table tr:last-child td { border-bottom:none; }
+    .cmp-table td:first-child { color:var(--muted); font-weight:500; }
+
+    /* ── Insight card ── */
+    .insight { background:var(--bg-2); border:1px solid var(--border); border-radius:10px; padding:16px; }
+    .insight h3 { font-size:14px; font-weight:600; margin-bottom:4px; }
+    .insight p  { font-size:12px; color:var(--muted); line-height:1.6; }
+
+    /* ── Next steps ── */
+    .step-item { display:flex; gap:12px; align-items:flex-start; padding:8px 0; }
+    .step-check { width:18px; height:18px; border-radius:4px; border:1.5px solid var(--border2);
+      flex-shrink:0; margin-top:1px; cursor:pointer; appearance:none; background:transparent; }
+    .step-check:checked { background:var(--blue); border-color:var(--blue); }
+    .step-label { font-size:13px; color:var(--muted); line-height:1.5; }
+    .step-label strong { color:var(--text); }
+
+    /* ── Footer ── */
+    .site-footer { background:var(--bg-1); border-top:1px solid var(--border); }
   </style>
 </head>
+
 <body>
 
-<!-- ── HEADER ─────────────────────────────────────────────────── -->
-<header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
-  <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-    <div class="flex items-center gap-2">
-      <span class="text-2xl">🏡</span>
+<!-- ─── HEADER ──────────────────────────────────────────── -->
+<header class="site-header sticky top-0 z-50">
+  <div style="max-width:900px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span style="font-size:22px;">🏡</span>
       <div>
-        <div class="font-bold text-slate-900 text-sm sm:text-base leading-tight">Mom's KC House Hunt</div>
-        <div class="text-xs text-slate-400">Kansas City · April 2026</div>
+        <div style="font-weight:700;font-size:14px;line-height:1.2;">Mom's KC House Hunt</div>
+        <div style="font-size:11px;color:var(--muted);">Kansas City · April 2026</div>
       </div>
     </div>
-    <a href="add-house.html"
-       class="bg-blue-600 text-white text-sm font-semibold px-3 py-2 rounded-lg hover:bg-blue-700 transition-colors whitespace-nowrap">
+    <a href="add-house.html" style="background:var(--blue);color:#fff;font-size:12px;font-weight:600;
+      padding:7px 14px;border-radius:8px;text-decoration:none;white-space:nowrap;">
       + Add a House
     </a>
   </div>
 </header>
 
-<main class="max-w-5xl mx-auto px-4 py-8">
+<main style="max-width:900px;margin:0 auto;padding:24px 16px 48px;">
 
-  <!-- ── ALERT ──────────────────────────────────────────────────── -->
-  <div class="bg-amber-50 border border-amber-300 rounded-xl p-4 mb-8 flex items-start gap-3">
-    <span class="text-amber-500 text-xl flex-shrink-0 mt-0.5">⚠️</span>
+  <!-- ─── ALERT ─────────────────────────────────────────── -->
+  <div class="alert" style="border-radius:10px;padding:12px 16px;margin-bottom:28px;
+    display:flex;gap:10px;align-items:flex-start;">
+    <span style="color:var(--amber);flex-shrink:0;font-size:16px;margin-top:1px;">⚠️</span>
     <div>
-      <div class="font-semibold text-amber-900 text-sm">Hold off on offers — a new listing drops April 29th</div>
-      <div class="text-amber-800 text-xs mt-1">The realtor mentioned another house with a pool going live on April 29th. Tour it before deciding on anything.</div>
+      <div style="font-weight:600;color:var(--amber);font-size:13px;">
+        Don't decide yet — a new listing drops April 29th
+      </div>
+      <div style="font-size:12px;color:#a88020;margin-top:2px;">
+        The realtor flagged another pool house going live April 29th. Tour it before making any offer.
+      </div>
     </div>
   </div>
 
-  <!-- ── HERO ───────────────────────────────────────────────────── -->
-  <div class="mb-8">
-    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
-      5 Houses. 1 Day. Let's Decide.
+  <!-- ─── HERO ──────────────────────────────────────────── -->
+  <div style="margin-bottom:28px;">
+    <h1 style="font-size:clamp(24px,5vw,36px);font-weight:800;line-height:1.15;
+      background:linear-gradient(120deg,#e2e8f5,#7a91b8);-webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;background-clip:text;">
+      5 Houses. 1 Day.<br>Let's Decide.
     </h1>
-    <p class="text-slate-500 mt-2 text-sm sm:text-base">
-      Toured April 23, 2026 · Kansas City, MO<br class="sm:hidden">
-      <span class="hidden sm:inline"> · </span>
-      Tap any card to see full details and leave a comment.
+    <p style="color:var(--muted);font-size:13px;margin-top:8px;">
+      Toured April 23, 2026 · Kansas City, MO ·
+      Tap any card for full details, room notes &amp; comments.
     </p>
   </div>
 
-  <!-- ── HOUSE CARDS ────────────────────────────────────────────── -->
-  <div id="houses-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-14">
-    <div class="col-span-full text-center text-slate-400 py-10 text-sm">Loading houses…</div>
+  <!-- ─── HOUSE CARDS ────────────────────────────────────── -->
+  <div id="houses-list" style="display:flex;flex-direction:column;gap:12px;margin-bottom:36px;">
+    <div style="color:var(--dim);text-align:center;padding:48px;font-size:14px;">Loading houses…</div>
   </div>
 
-  <!-- ── COMPARISON TABLE ───────────────────────────────────────── -->
-  <section class="mb-14">
-    <h2 class="text-2xl font-bold text-slate-900 mb-4">Side-by-Side Comparison</h2>
-    <div class="overflow-x-auto rounded-xl border border-slate-200 shadow-sm">
-      <table class="w-full text-sm bg-white min-w-[560px]">
-        <thead>
-          <tr class="bg-slate-50 border-b border-slate-200 text-xs font-semibold uppercase tracking-wide text-slate-500">
-            <th class="text-left p-3 w-28">Feature</th>
-            <th class="text-center p-3 text-purple-600">Pool House</th>
-            <th class="text-center p-3 text-blue-600">E. 70th Ter.</th>
-            <th class="text-center p-3 text-amber-600">Drive-By</th>
-            <th class="text-center p-3 text-slate-400">Garage House</th>
-            <th class="text-center p-3 text-slate-400">Jefferson St</th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-slate-100 text-slate-700">
-          <tr>
-            <td class="p-3 font-medium text-slate-600">Price</td>
-            <td class="p-3 text-center font-bold text-purple-700">$585K</td>
-            <td class="p-3 text-center font-bold text-blue-700">$495K</td>
-            <td class="p-3 text-center text-slate-400 text-xs">TBD</td>
-            <td class="p-3 text-center text-slate-400 text-xs">TBD</td>
-            <td class="p-3 text-center text-slate-400 text-xs">TBD</td>
-          </tr>
-          <tr class="bg-slate-50">
-            <td class="p-3 font-medium text-slate-600">Beds</td>
-            <td class="p-3 text-center">5+</td>
-            <td class="p-3 text-center">4</td>
-            <td class="p-3 text-center text-slate-400">?</td>
-            <td class="p-3 text-center">2 + attic</td>
-            <td class="p-3 text-center">3</td>
-          </tr>
-          <tr>
-            <td class="p-3 font-medium text-slate-600">Baths</td>
-            <td class="p-3 text-center font-semibold text-green-600">2+ ✅</td>
-            <td class="p-3 text-center font-semibold text-green-600">1.5 ✅</td>
-            <td class="p-3 text-center text-slate-400">?</td>
-            <td class="p-3 text-center font-semibold text-red-500">1 ❌</td>
-            <td class="p-3 text-center font-semibold text-red-500">1 ❌</td>
-          </tr>
-          <tr class="bg-slate-50">
-            <td class="p-3 font-medium text-slate-600">Pool</td>
-            <td class="p-3 text-center">🏊 Yes</td>
-            <td class="p-3 text-center text-slate-300">—</td>
-            <td class="p-3 text-center text-slate-400">?</td>
-            <td class="p-3 text-center text-slate-300">—</td>
-            <td class="p-3 text-center text-slate-300">—</td>
-          </tr>
-          <tr>
-            <td class="p-3 font-medium text-slate-600">Garage</td>
-            <td class="p-3 text-center text-slate-400">?</td>
-            <td class="p-3 text-center text-slate-400">?</td>
-            <td class="p-3 text-center text-slate-400">?</td>
-            <td class="p-3 text-center">🚗 Yes</td>
-            <td class="p-3 text-center text-slate-400">?</td>
-          </tr>
-          <tr class="bg-slate-50">
-            <td class="p-3 font-medium text-slate-600">Roof Age</td>
-            <td class="p-3 text-center font-semibold text-green-600">3 yrs ✅</td>
-            <td class="p-3 text-center font-semibold text-amber-600">11 yrs ⚠️</td>
-            <td class="p-3 text-center text-slate-400">?</td>
-            <td class="p-3 text-center text-slate-400">?</td>
-            <td class="p-3 text-center text-slate-400">?</td>
-          </tr>
-          <tr>
-            <td class="p-3 font-medium text-slate-600">Year Built</td>
-            <td class="p-3 text-center text-slate-400">?</td>
-            <td class="p-3 text-center text-slate-500">~1932</td>
-            <td class="p-3 text-center text-slate-400">?</td>
-            <td class="p-3 text-center text-slate-400">?</td>
-            <td class="p-3 text-center text-slate-400">?</td>
-          </tr>
-          <tr class="bg-slate-50">
-            <td class="p-3 font-medium text-slate-600">Reaction</td>
-            <td class="p-3 text-center text-lg">🔥🔥🔥</td>
-            <td class="p-3 text-center text-lg">😊😊</td>
-            <td class="p-3 text-center text-lg">😍</td>
-            <td class="p-3 text-center text-lg">😐</td>
-            <td class="p-3 text-center text-lg">😐</td>
-          </tr>
-          <tr>
-            <td class="p-3 font-medium text-slate-600">Status</td>
-            <td class="p-3 text-center"><span class="bg-purple-100 text-purple-700 text-xs font-semibold px-2 py-0.5 rounded-full">Top Pick</span></td>
-            <td class="p-3 text-center"><span class="bg-blue-100 text-blue-700 text-xs font-semibold px-2 py-0.5 rounded-full">Solid</span></td>
-            <td class="p-3 text-center"><span class="bg-amber-100 text-amber-700 text-xs font-semibold px-2 py-0.5 rounded-full">Watch</span></td>
-            <td class="p-3 text-center"><span class="bg-slate-100 text-slate-500 text-xs font-semibold px-2 py-0.5 rounded-full">Pass</span></td>
-            <td class="p-3 text-center"><span class="bg-slate-100 text-slate-500 text-xs font-semibold px-2 py-0.5 rounded-full">Pass</span></td>
-          </tr>
-        </tbody>
-      </table>
+  <!-- ─── COMPARISON TABLE (collapsible) ────────────────── -->
+  <div class="panel" style="margin-bottom:12px;">
+    <button class="panel-btn" onclick="togglePanel(this)">
+      <span>📊 Side-by-Side Comparison</span>
+      <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="panel-body open">
+      <div class="panel-inner" style="padding:0 0 4px;">
+        <div style="overflow-x:auto;">
+          <table class="cmp-table" style="width:100%;background:transparent;border-collapse:collapse;min-width:540px;">
+            <thead>
+              <tr style="background:var(--bg-2);">
+                <th style="text-align:left;width:100px;">Feature</th>
+                <th style="color:var(--purple);">Pool House</th>
+                <th style="color:var(--blue);">E. 70th Ter.</th>
+                <th style="color:var(--amber);">Drive-By</th>
+                <th style="color:var(--gray);">Garage House</th>
+                <th style="color:var(--gray);">Jefferson St</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Price</td>
+                <td style="text-align:center;font-weight:700;color:var(--purple);">$585K</td>
+                <td style="text-align:center;font-weight:700;color:var(--blue);">$495K</td>
+                <td style="text-align:center;color:var(--dim);">TBD</td>
+                <td style="text-align:center;color:var(--dim);">TBD</td>
+                <td style="text-align:center;color:var(--dim);">TBD</td>
+              </tr>
+              <tr>
+                <td>Beds</td>
+                <td style="text-align:center;">5+</td>
+                <td style="text-align:center;">4</td>
+                <td style="text-align:center;color:var(--dim);">?</td>
+                <td style="text-align:center;">2 + attic</td>
+                <td style="text-align:center;">3</td>
+              </tr>
+              <tr>
+                <td>Baths</td>
+                <td style="text-align:center;color:var(--green);font-weight:600;">2+ ✅</td>
+                <td style="text-align:center;color:var(--green);font-weight:600;">1.5 ✅</td>
+                <td style="text-align:center;color:var(--dim);">?</td>
+                <td style="text-align:center;color:var(--red);font-weight:600;">1 ❌</td>
+                <td style="text-align:center;color:var(--red);font-weight:600;">1 ❌</td>
+              </tr>
+              <tr>
+                <td>Pool</td>
+                <td style="text-align:center;color:var(--green);">🏊 Yes</td>
+                <td style="text-align:center;color:var(--dim);">—</td>
+                <td style="text-align:center;color:var(--dim);">?</td>
+                <td style="text-align:center;color:var(--dim);">—</td>
+                <td style="text-align:center;color:var(--dim);">—</td>
+              </tr>
+              <tr>
+                <td>Garage</td>
+                <td style="text-align:center;color:var(--dim);">?</td>
+                <td style="text-align:center;color:var(--dim);">?</td>
+                <td style="text-align:center;color:var(--dim);">?</td>
+                <td style="text-align:center;color:var(--green);">🚗 Yes</td>
+                <td style="text-align:center;color:var(--dim);">?</td>
+              </tr>
+              <tr>
+                <td>Roof Age</td>
+                <td style="text-align:center;color:var(--green);font-weight:600;">3 yrs ✅</td>
+                <td style="text-align:center;color:var(--amber);font-weight:600;">11 yrs ⚠️</td>
+                <td style="text-align:center;color:var(--dim);">?</td>
+                <td style="text-align:center;color:var(--dim);">?</td>
+                <td style="text-align:center;color:var(--dim);">?</td>
+              </tr>
+              <tr>
+                <td>Kitchen</td>
+                <td style="text-align:center;color:var(--green);">Nice ✅</td>
+                <td style="text-align:center;color:var(--muted);">Average</td>
+                <td style="text-align:center;color:var(--dim);">?</td>
+                <td style="text-align:center;color:var(--dim);">?</td>
+                <td style="text-align:center;color:var(--green);">Redone ✅</td>
+              </tr>
+              <tr>
+                <td>Reaction</td>
+                <td style="text-align:center;font-size:16px;">🔥🔥🔥</td>
+                <td style="text-align:center;font-size:16px;">😊😊</td>
+                <td style="text-align:center;font-size:16px;">😍</td>
+                <td style="text-align:center;font-size:16px;">😐</td>
+                <td style="text-align:center;font-size:16px;">😐</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ── KEY INSIGHTS ───────────────────────────────────────────── -->
-  <section class="mb-14">
-    <h2 class="text-2xl font-bold text-slate-900 mb-4">Key Insights</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-        <div class="text-2xl mb-2">🚫</div>
-        <h3 class="font-semibold text-slate-900 mb-1">1 Bathroom = Automatic No</h3>
-        <p class="text-sm text-slate-600">Both Jefferson St and the Garage House were passed on quickly. This family needs a minimum of 1.5 bathrooms — it's a hard requirement, not a preference.</p>
+  <!-- ─── KEY INSIGHTS (collapsible) ────────────────────── -->
+  <div class="panel" style="margin-bottom:12px;">
+    <button class="panel-btn open" onclick="togglePanel(this)">
+      <span>💡 Key Insights</span>
+      <svg class="chevron" style="transform:rotate(180deg);" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="panel-body open">
+      <div class="panel-inner" style="padding:0 16px 16px;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;padding-top:4px;">
+          <div class="insight">
+            <div style="font-size:20px;margin-bottom:6px;">🚫</div>
+            <h3>1 Bathroom = Automatic No</h3>
+            <p>Both Jefferson St and the Garage House were passed on immediately. 1.5 baths minimum is a hard requirement, not a preference.</p>
+          </div>
+          <div class="insight">
+            <div style="font-size:20px;margin-bottom:6px;">📅</div>
+            <h3>Wait for April 29th</h3>
+            <p>Realtor flagged a pool house going live April 29th. That's a third strong contender. No offers before that showing.</p>
+          </div>
+          <div class="insight">
+            <div style="font-size:20px;margin-bottom:6px;">💰</div>
+            <h3>The $90K Gap Is Smaller Than It Looks</h3>
+            <p>East 70th needs a new roof (~$20K), two HVAC units, and windows eventually. Pool House's 3-yr roof means the real diff may be ~$55–70K.</p>
+          </div>
+          <div class="insight">
+            <div style="font-size:20px;margin-bottom:6px;">♿</div>
+            <h3>Accessibility Is a Quiet Concern</h3>
+            <p>Steep stairs came up repeatedly. Grandpa was mentioned. Pool House has NO main-floor bedrooms. East 70th has 3 downstairs. This matters.</p>
+          </div>
+          <div class="insight">
+            <div style="font-size:20px;margin-bottom:6px;">🔧</div>
+            <h3>Garage House Hidden Upside</h3>
+            <p>Attic is already plumbed for a full bathroom. If priced as 1-bath, adding that bathroom could meaningfully change its value. Get an estimate.</p>
+          </div>
+          <div class="insight">
+            <div style="font-size:20px;margin-bottom:6px;">🏊</div>
+            <h3>Pool House: Price the Basement</h3>
+            <p>The unfinished basement was the only real negative. Get a finishing quote — it could add 1–2 rooms and real resale value.</p>
+          </div>
+        </div>
       </div>
-
-      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-        <div class="text-2xl mb-2">📅</div>
-        <h3 class="font-semibold text-slate-900 mb-1">Wait for April 29th</h3>
-        <p class="text-sm text-slate-600">Realtor flagged a pool house going live April 29th. That's a third strong contender. Don't make any offer before that showing.</p>
-      </div>
-
-      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-        <div class="text-2xl mb-2">💰</div>
-        <h3 class="font-semibold text-slate-900 mb-1">The $90K Gap Is Smaller Than It Looks</h3>
-        <p class="text-sm text-slate-600">East 70th ($495K) needs a new roof (~$15–25K) and likely windows and two HVAC units eventually. The Pool House ($585K) has a 3-yr roof. Real difference may be ~$55–70K.</p>
-      </div>
-
-      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-        <div class="text-2xl mb-2">♿</div>
-        <h3 class="font-semibold text-slate-900 mb-1">Accessibility Is a Hidden Concern</h3>
-        <p class="text-sm text-slate-600">Steep stairs came up at multiple houses. Grandpa was mentioned. The Pool House has NO main-floor bedrooms. East 70th has 3 main-floor bedrooms. This matters.</p>
-      </div>
-
-      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-        <div class="text-2xl mb-2">🔧</div>
-        <h3 class="font-semibold text-slate-900 mb-1">Garage House Has Hidden Upside</h3>
-        <p class="text-sm text-slate-600">The attic is already plumbed for a full bathroom. If the price is set as a 1-bath home, adding that bathroom could meaningfully change the value. Ask for a cost estimate.</p>
-      </div>
-
-      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-        <div class="text-2xl mb-2">🏊</div>
-        <h3 class="font-semibold text-slate-900 mb-1">Pool House: Price the Basement</h3>
-        <p class="text-sm text-slate-600">The unfinished basement was the only real negative noted at the Pool House. Get a finishing estimate — it could add 1–2 rooms and significant resale value.</p>
-      </div>
-
     </div>
-  </section>
+  </div>
 
-  <!-- ── NEXT STEPS ─────────────────────────────────────────────── -->
-  <section class="mb-12 bg-blue-50 border border-blue-200 rounded-xl p-6">
-    <h2 class="text-xl font-bold text-slate-900 mb-4">✅ What To Do Next</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-      <label class="flex items-start gap-3 cursor-pointer group">
-        <input type="checkbox" class="mt-0.5 h-4 w-4 rounded border-slate-300 text-blue-600 flex-shrink-0 cursor-pointer">
-        <span class="text-sm text-slate-700"><strong>Tour the April 29th listing</strong> — pool house going live, must see before deciding</span>
-      </label>
-      <label class="flex items-start gap-3 cursor-pointer group">
-        <input type="checkbox" class="mt-0.5 h-4 w-4 rounded border-slate-300 text-blue-600 flex-shrink-0 cursor-pointer">
-        <span class="text-sm text-slate-700"><strong>Schedule the Drive-By house</strong> — instinctive "it's mine!" reaction deserves a real showing</span>
-      </label>
-      <label class="flex items-start gap-3 cursor-pointer group">
-        <input type="checkbox" class="mt-0.5 h-4 w-4 rounded border-slate-300 text-blue-600 flex-shrink-0 cursor-pointer">
-        <span class="text-sm text-slate-700"><strong>Get East 70th disclosures</strong> — roof age, HVAC ages, window type in writing</span>
-      </label>
-      <label class="flex items-start gap-3 cursor-pointer group">
-        <input type="checkbox" class="mt-0.5 h-4 w-4 rounded border-slate-300 text-blue-600 flex-shrink-0 cursor-pointer">
-        <span class="text-sm text-slate-700"><strong>Get Pool House basement quote</strong> — finishing cost is the only unknown negative</span>
-      </label>
-      <label class="flex items-start gap-3 cursor-pointer group">
-        <input type="checkbox" class="mt-0.5 h-4 w-4 rounded border-slate-300 text-blue-600 flex-shrink-0 cursor-pointer">
-        <span class="text-sm text-slate-700"><strong>Ask about Garage House attic bath</strong> — already plumbed; get a finishing estimate</span>
-      </label>
-      <label class="flex items-start gap-3 cursor-pointer group">
-        <input type="checkbox" class="mt-0.5 h-4 w-4 rounded border-slate-300 text-blue-600 flex-shrink-0 cursor-pointer">
-        <span class="text-sm text-slate-700"><strong>Discuss accessibility needs</strong> — which house works for Grandpa and anyone needing main-floor access?</span>
-      </label>
+  <!-- ─── NEXT STEPS (collapsible) ──────────────────────── -->
+  <div class="panel" style="margin-bottom:12px;">
+    <button class="panel-btn" onclick="togglePanel(this)">
+      <span>✅ What To Do Next</span>
+      <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="panel-body">
+      <div class="panel-inner" style="padding:4px 16px 16px;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:4px;padding-top:8px;">
+          <label class="step-item"><input type="checkbox" class="step-check">
+            <span class="step-label"><strong>Tour the April 29th listing</strong> — pool house going live, must see first</span></label>
+          <label class="step-item"><input type="checkbox" class="step-check">
+            <span class="step-label"><strong>Schedule the Drive-By house</strong> — "it's mine" is a reaction worth following up</span></label>
+          <label class="step-item"><input type="checkbox" class="step-check">
+            <span class="step-label"><strong>Get East 70th disclosures</strong> — roof, HVAC, window type confirmed in writing</span></label>
+          <label class="step-item"><input type="checkbox" class="step-check">
+            <span class="step-label"><strong>Get Pool House basement quote</strong> — only real negative; price it before deciding</span></label>
+          <label class="step-item"><input type="checkbox" class="step-check">
+            <span class="step-label"><strong>Garage House attic bath estimate</strong> — it's plumbed; what would it cost to finish?</span></label>
+          <label class="step-item"><input type="checkbox" class="step-check">
+            <span class="step-label"><strong>Discuss accessibility</strong> — which house works for Grandpa if main-floor access is needed?</span></label>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
 
 </main>
 
-<!-- ── FOOTER ─────────────────────────────────────────────────── -->
-<footer class="border-t border-slate-200 bg-white">
-  <div class="max-w-5xl mx-auto px-4 py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
-    <div class="text-sm text-slate-400">🏡 Mom's KC House Hunt · Kansas City 2026</div>
-    <a href="add-house.html" class="text-sm font-semibold text-blue-600 hover:text-blue-700">+ Submit a new house →</a>
+<!-- ─── FOOTER ─────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div style="max-width:900px;margin:0 auto;padding:16px;display:flex;
+    align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+    <div style="font-size:12px;color:var(--dim);">🏡 Mom's KC House Hunt · Kansas City 2026</div>
+    <a href="add-house.html" style="font-size:12px;font-weight:600;color:var(--blue);text-decoration:none;">
+      + Submit a new house →
+    </a>
   </div>
 </footer>
 
-<!-- ── JS: RENDER CARDS ───────────────────────────────────────── -->
+<!-- ─── JS ────────────────────────────────────────────── -->
 <script>
-const STATUS = {
-  'top-pick': { label: '🥇 Top Pick', badge: 'badge-top',   border: 'border-top',   pill: 'bg-purple-100 text-purple-700' },
-  'solid':    { label: '🥈 Solid',    badge: 'badge-solid', border: 'border-solid', pill: 'bg-blue-100 text-blue-700' },
-  'watch':    { label: '👀 Watch',    badge: 'badge-watch', border: 'border-watch', pill: 'bg-amber-100 text-amber-700' },
-  'pass':     { label: '⏭ Pass',     badge: 'badge-pass',  border: 'border-pass',  pill: 'bg-slate-100 text-slate-500' },
+/* ── Panel toggle ──────────────────────────────────────── */
+function togglePanel(btn) {
+  const body = btn.nextElementSibling;
+  const open = body.classList.contains('open');
+  body.classList.toggle('open', !open);
+  btn.classList.toggle('open', !open);
+}
+
+/* ── Status config ─────────────────────────────────────── */
+const S = {
+  'top-pick': { label:'🥇 Top Pick', badge:'badge-top',   bar:'bar-top',   card:'status-top-pick',  rc:'rc-top',   vl:'vl-top'   },
+  'solid':    { label:'🥈 Solid',    badge:'badge-solid', bar:'bar-solid', card:'status-solid',     rc:'rc-solid', vl:'vl-solid' },
+  'watch':    { label:'👀 Watch',    badge:'badge-watch', bar:'bar-watch', card:'status-watch',     rc:'rc-watch', vl:'vl-watch' },
+  'pass':     { label:'⏭ Pass',     badge:'badge-pass',  bar:'bar-pass',  card:'status-pass',      rc:'rc-pass',  vl:'vl-pass'  },
 };
-const ORDER = { 'top-pick': 0, 'solid': 1, 'watch': 2, 'pass': 3 };
+const ORDER = { 'top-pick':0, 'solid':1, 'watch':2, 'pass':3 };
 
 async function init() {
   try {
-    const res = await fetch('./data/houses.json');
-    const houses = await res.json();
-    const sorted = [...houses].sort((a, b) => (ORDER[a.status] ?? 9) - (ORDER[b.status] ?? 9));
-    const grid = document.getElementById('houses-grid');
-    grid.innerHTML = sorted.map(card).join('');
+    const data = await fetch('./data/houses.json').then(r => r.json());
+    const sorted = [...data].sort((a,b) => (ORDER[a.status]??9) - (ORDER[b.status]??9));
+    document.getElementById('houses-list').innerHTML = sorted.map(buildCard).join('');
   } catch(e) {
-    document.getElementById('houses-grid').innerHTML =
-      '<div class="col-span-full text-center text-red-400 py-10 text-sm">Could not load house data.</div>';
+    document.getElementById('houses-list').innerHTML =
+      `<div style="color:var(--red);text-align:center;padding:32px;font-size:13px;">Could not load houses data.</div>`;
   }
 }
 
-function card(h) {
-  const s = STATUS[h.status] || STATUS['pass'];
-  const price  = h.price ? '$' + h.price.toLocaleString() : 'Price TBD';
-  const beds   = h.beds  != null ? h.beds + ' bed'  : '?';
-  const baths  = h.baths != null ? h.baths + ' bath' : '?';
-  const topFeatures = (h.features || []).slice(0, 3)
-    .map(f => `<li class="flex gap-1.5 text-xs text-slate-600"><span class="text-green-500 flex-shrink-0">✓</span>${f}</li>`)
-    .join('');
+function buildCard(h) {
+  const s     = S[h.status] || S['pass'];
+  const price = h.price ? '$' + h.price.toLocaleString() : 'Price TBD';
+  const beds  = h.beds  != null ? h.beds + ' bed'  : null;
+  const baths = h.baths != null ? h.baths + ' bath' : null;
+
+  const stats = [
+    beds   ? `<span class="stat">🛏 ${beds}</span>` : '',
+    baths  ? `<span class="stat ${+h.baths >= 1.5 ? 'good' : 'bad'}">🛁 ${baths}</span>` : '',
+    h.pool    ? `<span class="stat good">🏊 Pool</span>` : '',
+    h.garage  ? `<span class="stat">🚗 Garage</span>` : '',
+    h.yearBuilt ? `<span class="stat">🏚 ${h.yearBuilt}</span>` : '',
+  ].filter(Boolean).join('');
+
+  const features = (h.features || []).slice(0, 3).map(f =>
+    `<div class="feature-item"><span class="dot">●</span><span>${f}</span></div>`
+  ).join('');
+
+  const bestQuote = h.quotes && h.quotes[0]
+    ? `<div class="reaction-chip ${s.rc}">"${h.quotes[0].text}"
+        <span style="display:block;margin-top:4px;font-style:normal;font-weight:500;
+          font-size:11px;color:var(--muted);">— ${h.quotes[0].speaker} · ${h.quotes[0].context}</span>
+       </div>`
+    : h.reaction
+    ? `<div class="reaction-chip ${s.rc}">${h.reaction}</div>`
+    : '';
 
   return `
-<a href="house.html?id=${h.id}"
-   class="block bg-white rounded-2xl border-2 ${s.border} shadow-sm card-hover overflow-hidden flex flex-col">
-  <!-- badge row -->
-  <div class="${s.badge} text-white px-4 py-2.5 flex items-center justify-between">
-    <span class="text-sm font-semibold">${s.label}</span>
-    <span class="text-sm font-bold">${price}</span>
+<a href="house.html?id=${h.id}" class="house-card ${s.card}"
+   style="display:block;text-decoration:none;color:inherit;">
+  <div class="status-bar ${s.bar}"></div>
+  <div style="padding:14px 16px 6px;display:flex;align-items:center;
+    justify-content:space-between;flex-wrap:wrap;gap:6px;">
+    <span class="${s.badge}" style="font-size:11px;font-weight:600;padding:3px 10px;
+      border-radius:99px;">${s.label}</span>
+    <span style="font-size:15px;font-weight:700;color:var(--text);">${price}</span>
   </div>
-  <!-- body -->
-  <div class="p-4 flex-1 flex flex-col">
-    <h3 class="font-extrabold text-slate-900 text-lg leading-tight">${h.nickname}</h3>
-    <p class="text-xs text-slate-400 mt-0.5 mb-3">${h.address}</p>
 
-    <!-- quick stats -->
-    <div class="flex flex-wrap gap-1.5 mb-3">
-      <span class="bg-slate-100 text-slate-700 text-xs px-2 py-1 rounded-full">🛏 ${beds}</span>
-      <span class="bg-slate-100 text-slate-700 text-xs px-2 py-1 rounded-full">🛁 ${baths}</span>
-      ${h.pool    ? '<span class="bg-blue-100  text-blue-700  text-xs px-2 py-1 rounded-full">🏊 Pool</span>' : ''}
-      ${h.garage  ? '<span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">🚗 Garage</span>' : ''}
-      ${h.yearBuilt ? `<span class="bg-slate-100 text-slate-600 text-xs px-2 py-1 rounded-full">🏚 ${h.yearBuilt}</span>` : ''}
+  <!-- ── Two-panel horizontal body ── -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;
+    padding:4px 0 14px;">
+
+    <!-- Left panel -->
+    <div style="padding:4px 16px 4px;">
+      <h3 style="font-size:17px;font-weight:800;margin-bottom:2px;">${h.nickname}</h3>
+      <p style="font-size:11px;color:var(--muted);margin-bottom:10px;">${h.address}</p>
+      ${bestQuote}
     </div>
 
-    <!-- top 3 features -->
-    <ul class="space-y-1 mb-3 flex-1">${topFeatures}</ul>
+    <div class="card-divider" style="margin:8px 0;"></div>
 
-    <!-- reaction quote -->
-    ${h.reaction ? `<div class="bg-slate-50 border border-slate-100 rounded-lg p-2 text-xs text-slate-700 italic leading-snug">${h.reaction}</div>` : ''}
+    <!-- Right panel -->
+    <div style="padding:4px 16px 4px;display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;flex-wrap:wrap;gap:5px;">${stats}</div>
+      <div>${features}</div>
+      <div style="margin-top:auto;padding-top:4px;">
+        <span class="view-link ${s.vl}">View details &amp; comments →</span>
+      </div>
+    </div>
+
   </div>
-  <!-- cta -->
-  <div class="px-4 pb-4 pt-1">
-    <span class="text-blue-600 text-sm font-semibold">View details &amp; comments →</span>
-  </div>
-</a>`;
+</a>
+<style>
+  @media(max-width:540px){
+    a[href*="house.html"] > div:last-of-type {
+      grid-template-columns: 1fr !important;
+    }
+    .card-divider { display:none; }
+  }
+</style>`;
 }
 
 init();

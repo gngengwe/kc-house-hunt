@@ -16,26 +16,78 @@
     "pool": true,
     "zillowUrl": null,
     "features": [
-      "Swimming pool (shallow/decorative)",
-      "Double staircase — grand entry",
-      "Beautiful kitchen with lots of cabinet space",
-      "3-year-old roof — nearly new",
-      "Multiple bedrooms upstairs"
+      "Swimming pool — shallow/decorative, great for entertaining",
+      "Double staircase — grand entry, both parties loved it",
+      "Beautiful kitchen with a lot of cabinet space",
+      "3-year-old roof — nearly new, no near-term cost",
+      "Multiple large bedrooms upstairs"
     ],
     "concerns": [
-      "Unfinished basement",
-      "No bedroom on main floor — accessibility concern",
-      "Price is $90K more than the next option",
-      "Pool maintenance cost (~$150–300/month)"
+      "Unfinished basement — get a finishing estimate before deciding",
+      "No bedroom on main floor — accessibility concern for Grandpa",
+      "Price is $90K more than East 70th Terrace",
+      "Pool maintenance runs ~$150–300/month"
     ],
-    "reaction": "🔥🔥🔥 \"OH MY GOD. THIS IS THE ONE.\"",
+    "reaction": "🔥🔥🔥 \"Oh my God. This is the one.\"",
     "mechanicals": {
       "Roof": { "age": 3, "note": "Excellent — nearly new ✅" },
       "HVAC": { "age": null, "note": "Not captured — ask realtor" },
       "Water Heater": { "age": null, "note": "Not captured — ask realtor" }
     },
-    "verdict": "The clear emotional frontrunner — the entire group had an overwhelmingly positive reaction unlike any other house visited. Newest roof, pool, beautiful kitchen, and a double staircase. Main drawbacks are the unfinished basement (get a finishing estimate) and no main-floor bedroom (consider accessibility for Grandpa).",
-    "notes": "Address is approximate — verify with realtor. Pool is shallow/decorative. Realtor pulled this listing up during the East 70th Terrace showing. The realtor mentioned another pool house going live April 29th — compare before deciding."
+    "verdict": "The clear emotional frontrunner — the entire group had an overwhelmingly positive reaction unlike any other house visited. Newest roof, pool, beautiful kitchen, and a double staircase. Main drawbacks are the unfinished basement (get a finishing estimate) and no main-floor bedroom.",
+    "notes": "Address is approximate — verify with realtor. Realtor pulled this listing up during the East 70th Terrace showing. The realtor also mentioned another pool house going live April 29th — compare before deciding.",
+    "quotes": [
+      {
+        "text": "Oh, they have a swimming pool!",
+        "speaker": "Realtor",
+        "context": "Pulling up the listing during the previous showing"
+      },
+      {
+        "text": "The roof is all like three years old.",
+        "speaker": "Realtor",
+        "context": "Disclosing condition during the tour"
+      },
+      {
+        "text": "It's not deep. It's just great.",
+        "speaker": "Realtor",
+        "context": "On the pool — shallow and decorative"
+      },
+      {
+        "text": "Nice kitchen. This is very cute.",
+        "speaker": "Mom",
+        "context": "Walking through the kitchen"
+      },
+      {
+        "text": "I have to have the two staircase business.",
+        "speaker": "Family member",
+        "context": "Reacting to the double staircase — clearly loved it"
+      },
+      {
+        "text": "Oh, my God. Oh, my God. Oh, my God.",
+        "speaker": "Group",
+        "context": "Sustained reaction throughout the upstairs tour"
+      },
+      {
+        "text": "Oh, my God. This is the one.",
+        "speaker": "Group",
+        "context": "The defining moment of the day"
+      },
+      {
+        "text": "She'll lose this.",
+        "speaker": "Group",
+        "context": "Reacting to what is likely Olivia's potential bedroom"
+      },
+      {
+        "text": "This one's not finished. I don't think I'll get it.",
+        "speaker": "Group",
+        "context": "On the unfinished basement — the only real negative"
+      },
+      {
+        "text": "What's the price on this one? This one's five eighty-five.",
+        "speaker": "Realtor",
+        "context": "Confirming $585,000"
+      }
+    ]
   },
   {
     "id": "east-70th",
@@ -55,19 +107,19 @@
     "zillowUrl": null,
     "features": [
       "4 bedrooms: 3 downstairs + 1 large upstairs suite",
-      "1.5 baths — shower & toilet on opposite sides (nice layout)",
+      "1.5 baths — shower & toilet on opposite sides, very nice layout",
       "200-amp electrical panel in basement (upgraded)",
-      "2-year-old water heater",
-      "Similar size to current home — easy to visualize living here",
-      "Upstairs could be converted to a complete 3-bed suite"
+      "2-year-old water heater — nearly new",
+      "Same size and feel as current home — easy to visualize",
+      "Upstairs convertible to a complete 3-bedroom suite"
     ],
     "concerns": [
-      "Roof is 11 years old — budget ~$15–25K for replacement soon",
-      "Original windows from 1932 — likely single-pane, high energy cost",
+      "11-year-old roof — budget $15–25K for replacement within 3–5 years",
+      "Original windows from ~1932 — likely single-pane, high energy bills",
       "HVAC upstairs is 7 years old — mid-life",
-      "HVAC in basement is 10 years old — aging",
+      "HVAC in basement is 10 years old — aging, plan for replacement",
       "Steep stairs to upper level — concern for older family members",
-      "Showing was very stuffy — staged clothes in closets, not reflective of actual space"
+      "Showing was very stuffy — staged clothes don't reflect real space"
     ],
     "reaction": "😊😊 \"This house is good\" — solid, positive but measured",
     "mechanicals": {
@@ -77,13 +129,75 @@
       "Water Heater": { "age": 2, "note": "Nearly new ✅" },
       "Electrical Panel": { "age": null, "note": "200-amp — upgraded ✅" }
     },
-    "verdict": "The safe, solid choice. Comparable to the current home in size and feel — easy to picture living there. The $90K lower price is real, but aging mechanicals (roof + 2 HVAC units + original windows) could eat into that gap. Good bones, dependable, but not the most exciting option.",
-    "notes": "Year built is approximate based on audio (~1925–1932). The upstairs was made into a complete 3-bedroom suite by the previous owners — this is a major bonus. Room discussed as possible office for one person, bedroom for Olivia. Clothes were staged in closets making it feel stuffy — don't let that color the actual size judgment."
+    "verdict": "The safe, solid choice. Comparable to the current home in size and feel — easy to picture living there. The $90K lower price is real, but aging mechanicals (roof + 2 HVAC units + original windows) narrow that gap. Good bones, dependable, but not the most exciting option.",
+    "notes": "Year built is approximate (~1925–1932). The upstairs was made into a complete 3-bedroom suite by previous owners — major bonus. Rooms discussed: small office → home office again; another room → Olivia's. Staged clothes in closets made the space feel very stuffy — judge the actual square footage, not the staging.",
+    "quotes": [
+      {
+        "text": "We are East 70th Terrace in Kansas City. It's in 1932, 1925 — just like what we have, where we live right now.",
+        "speaker": "Mom",
+        "context": "Recording a voice note while touring — noting the similarities to current home"
+      },
+      {
+        "text": "Oh, there are two bedrooms down there. That's good. Oh, three, actually. There is a room.",
+        "speaker": "Mom",
+        "context": "Discovering the downstairs bedrooms — pleasantly surprised"
+      },
+      {
+        "text": "Oh, this is really nice. The shower is on the other side, so the shower is not in your face. There's a shower here.",
+        "speaker": "Mom",
+        "context": "On the main bathroom layout — liked the separation of shower and toilet"
+      },
+      {
+        "text": "Oh, I can actually sit here. Oh, that's nice. Take a shower.",
+        "speaker": "Mom",
+        "context": "Physically trying out the shower area — a positive moment"
+      },
+      {
+        "text": "This room is actually like our house in Tracy.",
+        "speaker": "Mom",
+        "context": "Recognizing a familiar room layout from a previous home"
+      },
+      {
+        "text": "This is not a bad size bedroom. And that's a good size closet.",
+        "speaker": "Group",
+        "context": "Evaluating one of the downstairs bedrooms"
+      },
+      {
+        "text": "They made a complete three bedroom upstairs. So this is bigger.",
+        "speaker": "Realtor",
+        "context": "On the upstairs potential — previous owners fully converted it"
+      },
+      {
+        "text": "Only climbing upstairs, I have to think of it.",
+        "speaker": "Mom",
+        "context": "Acknowledging the steep stairs as a concern"
+      },
+      {
+        "text": "I think that house that you really like that goes live on the 29th. I think it has a pool. That would be wonderful.",
+        "speaker": "Realtor",
+        "context": "Tipping off the upcoming listing — don't miss it"
+      },
+      {
+        "text": "The roof is about 11 and a half years old. The heating upstairs is 7. The one in the basement is 10. And the water heat is only 2 years.",
+        "speaker": "Realtor",
+        "context": "Disclosing mechanical ages — key financial data"
+      },
+      {
+        "text": "It's very stuffy.",
+        "speaker": "Mom",
+        "context": "On the staged clothes left in closets — don't mistake staging for size"
+      },
+      {
+        "text": "But this house is good.",
+        "speaker": "Mom",
+        "context": "Overall verdict at the end of the showing"
+      }
+    ]
   },
   {
     "id": "drive-by",
     "nickname": "The Drive-By",
-    "tagline": "\"Oh cute — it's mine!\"",
+    "tagline": "\"It's mine!\"",
     "address": "Near bridge/river — exact address not captured",
     "price": null,
     "status": "watch",
@@ -98,24 +212,51 @@
     "zillowUrl": null,
     "features": [
       "Spotted in a nicer neighborhood near a bridge/river",
-      "Strong instinctive positive reaction on first glance",
-      "Not yet evaluated — could be a hidden gem"
+      "Strong, immediate positive gut reaction on first glance",
+      "Not yet evaluated — could be an unscheduled gem"
     ],
     "concerns": [
       "No details yet — needs a proper showing",
-      "Location near bridge may require Uber/transit depending on family base",
-      "Unknown price, beds, baths, condition"
+      "Location near bridge may require Uber/transit for daily life",
+      "Unknown price, beds, baths, and condition"
     ],
-    "reaction": "😍 \"Oh cute\" — \"it's mine!\" — very instinctive, positive first impression",
+    "reaction": "😍 \"Oh cute\" — \"it's mine!\" — raw instinct, very positive",
     "mechanicals": {},
-    "verdict": "This was not a scheduled stop — spotted while driving past on the last house of the day. The immediate gut reaction was strong ('it's mine!'). That kind of instinct is worth following up on. Needs a proper showing before any real evaluation.",
-    "notes": "Spotted while driving near a bridge/river area on the way back from the day's showings. Address was not recorded — ask the realtor to identify the listing from the location description."
+    "verdict": "This was not a scheduled stop — spotted while driving on the last house of the day. The immediate gut reaction was strong. That kind of instinct matters and is worth following up on with a real showing before dismissing.",
+    "notes": "Spotted while driving near a bridge/river area at the end of the day's showings. Address was not recorded — ask the realtor to identify the listing from the location description.",
+    "quotes": [
+      {
+        "text": "This is the last house of the day. We just saw this on our way, and we said we should come back.",
+        "speaker": "Mom",
+        "context": "Explaining how they found it — a spontaneous detour"
+      },
+      {
+        "text": "Oh cute.",
+        "speaker": "Mom",
+        "context": "Immediate first reaction on seeing the exterior"
+      },
+      {
+        "text": "It's mine.",
+        "speaker": "Mom",
+        "context": "Instinctive claim — strongest gut positive reaction of the day"
+      },
+      {
+        "text": "We want a nicer house where we are living in. I guess we have to go — not off the river, we can get something around here, close to the bridge.",
+        "speaker": "Mom",
+        "context": "Thinking aloud about the area and what it means for location"
+      },
+      {
+        "text": "We have to take an Uber and take an Uber back, but we have a better house.",
+        "speaker": "Mom",
+        "context": "Acknowledging the location trade-off but still positive about the house itself"
+      }
+    ]
   },
   {
     "id": "garage-house",
     "nickname": "The Garage House",
     "tagline": "\"Super adorable\" — but limited",
-    "address": "~5851 or 5901 [Street TBD]",
+    "address": "~5851 / 5901 [Street TBD]",
     "price": null,
     "status": "pass",
     "visitDate": "2026-04-23",
@@ -129,14 +270,13 @@
     "zillowUrl": null,
     "features": [
       "Has a garage",
-      "Attic is already PLUMBED for a full bathroom — expansion opportunity",
-      "Described as 'super adorable' and 'cute'",
-      "Washer/dryer in basement"
+      "Attic already plumbed for a full bathroom — real expansion potential",
+      "Described as cute and adorable throughout"
     ],
     "concerns": [
       "Only 1 bathroom — dealbreaker for this family",
-      "Very steep stairs — raised as accessibility concern",
-      "Attic access is difficult (steep/narrow) — 'last resort' to sleep up there",
+      "Steep stairs — accessibility concern raised",
+      "Attic access is difficult and very warm — steep/narrow stairs",
       "Price described as 'higher' relative to what it offers"
     ],
     "reaction": "😊 \"Super adorable\" — cute but not a fit",
@@ -145,8 +285,50 @@
       "HVAC": { "age": null, "note": "Not captured — ask realtor" },
       "Water Heater": { "age": null, "note": "Not captured — ask realtor" }
     },
-    "verdict": "Cute and has a garage, but the single bathroom is a real constraint for this family. The attic being already plumbed for a full bathroom is the hidden gem — if you could add that bathroom, the value story changes significantly. Worth asking for an estimate on that work before fully dismissing.",
-    "notes": "Two addresses on or near the same street (5851 and 5901). Shoes required to be removed for showing. Realtor mentioned a separate house 'waiting to come active' on the same street worth watching. Realtor also noted that 1 bathroom is 'typical for a two-story' in this area."
+    "verdict": "Cute and has a garage, but the single bathroom is a real constraint. The attic being already plumbed for a full bathroom is the hidden gem — that work could unlock the house's potential. Worth asking for an estimate on the attic bathroom before fully dismissing.",
+    "notes": "Two addresses on or near the same street (5851 and 5901). Shoes required to be removed for showing. Realtor mentioned a separate house 'waiting to come active' on the same street. Realtor noted 1 bathroom is 'typical for a two-story' in this area.",
+    "quotes": [
+      {
+        "text": "Oh yeah, it's gorgeous over here.",
+        "speaker": "Mom",
+        "context": "Arriving at the neighborhood"
+      },
+      {
+        "text": "This two bedrooms are showing — the back room. That's not bad.",
+        "speaker": "Mom",
+        "context": "Touring the upstairs bedrooms"
+      },
+      {
+        "text": "There is no bathroom — but see the opportunity to expand. It's plumbed for a whole bathroom, so you could add a whole bathroom in here.",
+        "speaker": "Realtor",
+        "context": "On the attic — a key upside that changes the value math"
+      },
+      {
+        "text": "There's a little warmer up here, huh. Think of that AC thing.",
+        "speaker": "Group",
+        "context": "In the attic — noting the heat issue that would need addressing"
+      },
+      {
+        "text": "I couldn't — I wouldn't sleep up there for any reason. This is a last resort.",
+        "speaker": "Group",
+        "context": "Honest reaction to the attic as sleeping space"
+      },
+      {
+        "text": "It is cute. I'd be here for like 10 minutes trying to cut the shoes back off. The buckles are just like right at the wrong place.",
+        "speaker": "Family member",
+        "context": "Leaving the showing — had to take shoes off, slightly awkward"
+      },
+      {
+        "text": "This is typical for a two story. I think you have to come to terms with that.",
+        "speaker": "Realtor",
+        "context": "On having only 1 bathroom — trying to normalize it, but the family wasn't buying it"
+      },
+      {
+        "text": "At least the price is higher.",
+        "speaker": "Group",
+        "context": "Wry comment — the price is higher but the features don't justify it"
+      }
+    ]
   },
   {
     "id": "jefferson-st",
@@ -165,18 +347,40 @@
     "pool": false,
     "zillowUrl": null,
     "features": [
-      "Huge yard / park — standout feature",
+      "Huge yard / park — the standout feature",
       "Recently redone kitchen",
       "Good exterior appearance"
     ],
     "concerns": [
       "Only 1 bathroom — immediate dealbreaker",
       "Small downstairs bedroom",
-      "Recording was missed — assessment from memory only"
+      "Recording was missed — assessment is from memory only, details may be off"
     ],
-    "reaction": "😐 \"Nah\" — clear dealbreaker on bathrooms",
+    "reaction": "😐 \"Nah\" — 1 bathroom killed it immediately",
     "mechanicals": {},
-    "verdict": "The huge yard and newly redone kitchen are genuinely appealing features. But 1 bathroom was an immediate dealbreaker for this family. Not worth revisiting unless the price drops significantly or the family's bathroom requirement changes.",
-    "notes": "Recording was mostly missed — the speaker thought they were recording but wasn't. The description is from memory after the fact, so details may be incomplete. The downstairs bedroom being small is notable for accessibility planning."
+    "verdict": "The huge yard and newly redone kitchen are genuinely appealing. But 1 bathroom was an immediate dealbreaker. Not worth revisiting unless the price drops significantly or the bathroom situation changes somehow.",
+    "notes": "Mom thought she was recording during this showing but wasn't. The entire description was recalled from memory afterwards — details may be incomplete or slightly off. The address 7135 Jefferson was confirmed in the audio from the East 70th Terrace recording when the realtor mentioned 'we're going to Jefferson next.'",
+    "quotes": [
+      {
+        "text": "The outside was good, the park yard is huge, the kitchen just re-dawned.",
+        "speaker": "Mom",
+        "context": "Recalling the house from memory after realizing the recording missed it"
+      },
+      {
+        "text": "The bedroom downstairs is small. There is just one bathroom there — three bedrooms and one bathroom. That's nah.",
+        "speaker": "Mom",
+        "context": "The dealbreaker — delivered flat and immediate"
+      },
+      {
+        "text": "I don't think we'll have to do some things.",
+        "speaker": "Mom",
+        "context": "On the house overall — it needs work and doesn't meet requirements"
+      },
+      {
+        "text": "I thought I was recording but it wasn't record. I didn't even know. It was too hard.",
+        "speaker": "Mom",
+        "context": "Realizing the whole showing was unrecorded — a bit exasperated"
+      }
+    ]
   }
 ]
