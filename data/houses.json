@@ -333,52 +333,68 @@
   {
     "id": "w-100th-ter",
     "nickname": "912 W 100th Terrace",
-    "tagline": "Move-in ready, quiet neighborhood",
+    "tagline": "Reverse ranch on a quiet cul-de-sac — move-in ready",
     "address": "912 W 100th Ter, Kansas City, MO 64114",
-    "price": null,
+    "price": 354900,
     "status": "solid",
     "visitDate": "2026-05-20",
-    "yearBuilt": null,
+    "yearBuilt": 1960,
     "stories": 1,
     "beds": 3,
-    "baths": 3,
+    "baths": 2.5,
     "sqft": 2250,
-    "garage": null,
+    "lotSqft": 10239,
+    "garage": true,
     "pool": false,
+    "hoa": 6,
+    "pricePerSqft": 158,
+    "daysOnMarket": 82,
     "zillowUrl": "https://www.zillow.com/homedetails/912-W-100th-Ter-Kansas-City-MO-64114/2432764_zpid/",
+    "listingAgents": "Chris Austin 913-522-9546 / Jim Montemayor 913-593-9237 — KW Kansas City Metro",
     "features": [
-      "2,250 sq ft single-family ranch",
-      "3 bedrooms / 3 bathrooms — meets the minimum requirement",
-      "Move-in ready — main house needs no work",
-      "Unfinished basement — can complete it with money saved vs pool house budget",
-      "Quiet neighborhood",
-      "1-story ranch — main-floor living, great for accessibility"
+      "2,250 sq ft reverse ranch on quiet cul-de-sac — low traffic, family friendly",
+      "3 bed / 2.5 bath — primary ensuite + full hall bath + half bath in basement",
+      "Oversized 2-car garage with storage and workspace",
+      "Hardwood floors recently refinished throughout main living areas",
+      "Granite countertops + gas cooktop in kitchen",
+      "Fireplace in hearth room flowing into formal living room",
+      "Spacious wooden deck overlooking large backyard (10,239 sq ft lot)",
+      "Partially finished basement — game room / media room potential + half bath already in",
+      "Price improvement — already reduced, sellers are motivated",
+      "$230,100 less than the Pool House — that gap finishes the basement AND furnishes the house"
     ],
     "concerns": [
-      "Price not yet confirmed — verify with realtor",
-      "Basement details pending — realtor investigating",
+      "Built in 1960 — mechanicals (HVAC, electrical, plumbing) ages not confirmed yet",
+      "82 days on market — worth asking why it hasn't moved",
+      "Partially finished basement only — needs work to be fully livable",
       "No pool",
-      "Smaller on paper than pool house (2,250 sqft) but no wasted unfinished space"
+      "2.5 baths (Zillow shows 3 — the half bath is in the basement)"
     ],
-    "reaction": "❤️ \"I love this house. The main house is move in ready.\"",
-    "mechanicals": {},
-    "verdict": "Mom's strong reaction — 'I love this house.' Key selling point: move-in ready with money left over from the pool house budget to finish the basement however the family wants. Being a 1-story ranch also means no steep stair concerns for Grandpa or accessibility needs. Realtor is investigating basement details.",
-    "notes": "Shared via WhatsApp by Mom. Realtor was going to find out more about the basement if interested. With the budget difference vs the pool house, the unfinished basement could be completed to spec — meaning this could end up with MORE usable space than it appears. Confirm price before comparing directly to the $585K pool house.",
+    "reaction": "❤️ \"I love this house. The main house is move in ready and with the difference in budget, we can complete the basement anyway we want.\"",
+    "mechanicals": {
+      "Roof": { "age": null, "note": "Not confirmed — ask realtor (house built 1960)" },
+      "HVAC": { "age": null, "note": "Not confirmed — ask realtor" },
+      "Water Heater": { "age": null, "note": "Not confirmed — ask realtor" },
+      "Electrical": { "age": null, "note": "Not confirmed — 1960 build, verify panel is updated" },
+      "HOA": { "age": null, "note": "$6/month — essentially nothing ✅" }
+    },
+    "verdict": "At $354,900 this is $230,100 less than the Pool House — and the main floor is move-in ready with refinished hardwood floors, granite, gas cooktop, and a fireplace. Mom loves it. The partially finished basement with a half bath already roughed in means the family can design it exactly how they want with the money saved. Quiet cul-de-sac and 1-story living is ideal for accessibility. The 82 days on market is worth a conversation — could mean room to negotiate below asking. Key unknowns: mechanical ages on a 1960 build need to be confirmed.",
+    "notes": "Reverse ranch means it may look like 1 story from the street but uses the terrain — main floor has all 3 bedrooms and main living. Listing says '2.5 baths' in the description but Zillow header shows 3 — the half bath is in the basement. Has already had a price improvement (reduced). 240 Zillow saves = strong interest despite 82 days on market. Listing agents: Chris Austin 913-522-9546 and Jim Montemayor 913-593-9237, KW Kansas City Metro.",
     "quotes": [
       {
         "text": "I love this house. The main house is move in ready and with the difference in budget, we can complete the basement anyway we want.",
         "speaker": "Mom",
-        "context": "WhatsApp message sharing the listing"
+        "context": "WhatsApp message sharing the listing — spontaneous and enthusiastic"
       },
       {
         "text": "It's a quiet neighborhood.",
         "speaker": "Mom",
-        "context": "Additional note on the area"
+        "context": "On the cul-de-sac location"
       },
       {
         "text": "The realtor was going to find out more about the basement if we're interested.",
         "speaker": "Mom",
-        "context": "Next step — basement details pending"
+        "context": "Next step — basement finishing scope and cost pending"
       }
     ]
   },
