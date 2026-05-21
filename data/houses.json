@@ -331,6 +331,58 @@
     ]
   },
   {
+    "id": "w-100th-ter",
+    "nickname": "912 W 100th Terrace",
+    "tagline": "Move-in ready, quiet neighborhood",
+    "address": "912 W 100th Ter, Kansas City, MO 64114",
+    "price": null,
+    "status": "solid",
+    "visitDate": "2026-05-20",
+    "yearBuilt": null,
+    "stories": 1,
+    "beds": 3,
+    "baths": 3,
+    "sqft": 2250,
+    "garage": null,
+    "pool": false,
+    "zillowUrl": "https://www.zillow.com/homedetails/912-W-100th-Ter-Kansas-City-MO-64114/2432764_zpid/",
+    "features": [
+      "2,250 sq ft single-family ranch",
+      "3 bedrooms / 3 bathrooms — meets the minimum requirement",
+      "Move-in ready — main house needs no work",
+      "Unfinished basement — can complete it with money saved vs pool house budget",
+      "Quiet neighborhood",
+      "1-story ranch — main-floor living, great for accessibility"
+    ],
+    "concerns": [
+      "Price not yet confirmed — verify with realtor",
+      "Basement details pending — realtor investigating",
+      "No pool",
+      "Smaller on paper than pool house (2,250 sqft) but no wasted unfinished space"
+    ],
+    "reaction": "❤️ \"I love this house. The main house is move in ready.\"",
+    "mechanicals": {},
+    "verdict": "Mom's strong reaction — 'I love this house.' Key selling point: move-in ready with money left over from the pool house budget to finish the basement however the family wants. Being a 1-story ranch also means no steep stair concerns for Grandpa or accessibility needs. Realtor is investigating basement details.",
+    "notes": "Shared via WhatsApp by Mom. Realtor was going to find out more about the basement if interested. With the budget difference vs the pool house, the unfinished basement could be completed to spec — meaning this could end up with MORE usable space than it appears. Confirm price before comparing directly to the $585K pool house.",
+    "quotes": [
+      {
+        "text": "I love this house. The main house is move in ready and with the difference in budget, we can complete the basement anyway we want.",
+        "speaker": "Mom",
+        "context": "WhatsApp message sharing the listing"
+      },
+      {
+        "text": "It's a quiet neighborhood.",
+        "speaker": "Mom",
+        "context": "Additional note on the area"
+      },
+      {
+        "text": "The realtor was going to find out more about the basement if we're interested.",
+        "speaker": "Mom",
+        "context": "Next step — basement details pending"
+      }
+    ]
+  },
+  {
     "id": "jefferson-st",
     "nickname": "Jefferson Street",
     "tagline": "Big yard, new kitchen — but 1 bath",
